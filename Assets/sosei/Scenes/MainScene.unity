@@ -1501,6 +1501,7 @@ GameObject:
 =======
   m_GameObject: {fileID: 1535676692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalPosition: {x: -3.05, y: -3.08, z: 0}
   m_LocalScale: {x: 0.3658, y: 0.3272, z: 1}
   m_Children: []
@@ -1758,6 +1759,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+<<<<<<< HEAD:Assets/Scenes/MainScene.unity
 --- !u!1 &2026397654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,3 +1855,5 @@ CanvasRenderer:
   m_GameObject: {fileID: 2026397654}
   m_CullTransparentMesh: 1
 >>>>>>> 7751f235470fd658788cb5cf18f78af848f6b033
+=======
+>>>>>>> tentative:Assets/sosei/Scenes/MainScene.unity
