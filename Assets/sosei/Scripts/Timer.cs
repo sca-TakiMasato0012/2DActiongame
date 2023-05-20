@@ -18,14 +18,14 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CountDownTime = CountTimer;    
+        CountDownTime = CountTimer;
     }
     
     // Update is called once per frame
     void Update()
     {
         // カウントダウンタイムを整形して表示
-        TextCountDown.text = String.Format("残り時間:{0:00秒}", CountDownTime);
+        TextCountDown.text = String.Format("00:00", CountDownTime);
         // 経過時刻を引いていく
         CountDownTime -= Time.deltaTime;
     }
