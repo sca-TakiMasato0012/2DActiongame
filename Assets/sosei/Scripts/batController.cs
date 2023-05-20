@@ -18,12 +18,12 @@ public class batController : MonoBehaviour
     void Update()
     {
         // ¶‚©‚ç‰E‚ÉˆÚ“®
-        transform.position += new Vector3(-BatSpeed, 0, 0) * Time.deltaTime;
+        transform.position += new Vector3(-BatSpeed, -1, 0) * Time.deltaTime;
 
-        // ‰æ–Êã•û‚ÉÁ‚¦‚½‚ç’e‚ğÁ‹
-        //if (transform.position.x >= -100.0f)
-       // {
-         //   Destroy(gameObject);
-       // }
+        //‰æ–Êã•û‚ÉÁ‚¦‚½‚ç’e‚ğÁ‹
+       if (transform.position.x <= -100.0f)
+       {
+           Destroy(gameObject);
+       }
     }
 }
