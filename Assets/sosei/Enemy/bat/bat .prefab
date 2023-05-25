@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1956cc6913e36224f839404ee1ba623b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BatPrefab: {fileID: 0}
+  BatPrefab: {fileID: 5946117839816840241}
   appearancerate: 0

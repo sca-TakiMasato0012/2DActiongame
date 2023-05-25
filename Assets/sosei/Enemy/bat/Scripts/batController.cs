@@ -27,41 +27,4 @@ public class batController : MonoBehaviour
            Destroy(gameObject);
        }
     }
-
-    Vector3 CalcLerpPoint(Vector3 p0, Vector3 p1, Vector3 p2, float t)
-    {
-        var a = Vector3.Lerp(p0, p1, t);
-        var b = Vector3.Lerp(p1, p2, t);
-        return Vector3.Lerp(a, b, t);
-    }
-
-
-
-    public void StartThrow(GameObject Bat, float height, Vector3 start, Vector3 end, float duration)
-    {
-        // ’†“_‚ð‹‚ß‚é
-        Vector3 half = end - start * 0.50f + start;
-        half.y += Vector3.up.y + height;
-
-        StartCoroutine(LerpThrow(Bat, start, half, end, duration));
-    }
-
-
-    IEnumerator LerpThrow(GameObject Bat, Vector3 start, Vector3 half, Vector3 end, float duration)
-    {
-        float startTime = Time.timeSinceLevelLoad;
-        float rate = 0f;
-        while (true)
-        {
-            if (rate >= 1.0f)
-                yield break;
-
-            float diff = Time.timeSinceLevelLoad - startTime;
-            rate = diff / (duration / 60f);
-            Bat.transform.position = CalcLerpPoint(start, half, end, rate);
-
-            yield return null;
-        }
-    }
-
 }
