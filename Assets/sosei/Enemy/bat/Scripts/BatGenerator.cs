@@ -18,8 +18,8 @@ public class BatGenerator : MonoBehaviour
     {
         if (Random.Range(0, appearancerate)==1)
         {
-            Vector3 pos = new Vector3(10,Random.Range(10.0f,-5.0f), 0);
-            Instantiate(BatPrefab, pos, Quaternion.identity);
+            Vector3 pos = new Vector3(10,3, 0);
+            Instantiate(BatPrefab, pos,Quaternion.identity);
         }
     }
 }
