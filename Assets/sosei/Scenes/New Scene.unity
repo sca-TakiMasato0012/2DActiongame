@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 2100231134}
   - component: {fileID: 2100231133}
   - component: {fileID: 2100231135}
+  - component: {fileID: 2100231136}
   m_Layer: 0
   m_Name: 'bat '
   m_TagString: Enemy
@@ -724,3 +725,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BatSpeed: 4
   Angle: -2
+--- !u!114 &2100231136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100231132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1956cc6913e36224f839404ee1ba623b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BatPrefab: {fileID: 5946117839816840241, guid: e7fae640f7a96d14a9e1e6ff23aa5881, type: 3}
+  appearancerate: 1
