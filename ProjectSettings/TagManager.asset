@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Ground
+  - Barrier
+  - Camera
   layers:
   - Default
   - TransparentFX
