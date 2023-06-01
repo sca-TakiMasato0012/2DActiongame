@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1991039964}
+  Gravity: 5
 --- !u!50 &208822976
 Rigidbody2D:
   serializedVersion: 4
@@ -155,7 +156,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -272,15 +273,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'bat '
       objectReference: {fileID: 0}
+    - target: {fileID: 5946117839816840242, guid: e7fae640f7a96d14a9e1e6ff23aa5881,
+        type: 3}
+      propertyPath: BatSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5946117839816840243, guid: e7fae640f7a96d14a9e1e6ff23aa5881,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.47
+      value: 26.05
       objectReference: {fileID: 0}
     - target: {fileID: 5946117839816840243, guid: e7fae640f7a96d14a9e1e6ff23aa5881,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.64
+      value: 4.1
       objectReference: {fileID: 0}
     - target: {fileID: 5946117839816840243, guid: e7fae640f7a96d14a9e1e6ff23aa5881,
         type: 3}
@@ -571,8 +577,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945746749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -5.12, z: 0}
-  m_LocalScale: {x: 38.77016, y: 1, z: 1}
+  m_LocalPosition: {x: 1.214, y: -5.12, z: 0}
+  m_LocalScale: {x: 51.02654, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -760,15 +766,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone
       objectReference: {fileID: 0}
+    - target: {fileID: 2749070944889486433, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2764079199383139886, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.29
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2764079199383139886, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.67
+      value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 2764079199383139886, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc,
         type: 3}
@@ -823,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 2764079199383139886, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.333333
+      value: 3.6255262
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc, type: 3}
