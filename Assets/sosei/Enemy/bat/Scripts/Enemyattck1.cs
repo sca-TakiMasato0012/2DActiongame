@@ -5,28 +5,41 @@ using UnityEngine;
 public class Enemyattck1: MonoBehaviour
 {
 
-    public GameObject target;
-
+    public GameObject target;//playerの取得
+    Rigidbody2D rb;
+    [SerializeField]
+    private float Gravity; //石の落下スピード
     
         // Start is called before the first frame update
         void Start() 
         {
-        
+            rb = GetComponent<Rigidbody2D>();
         }
 
     void Update() 
     {
-        Vector3 stone = target.transform.position;
-        float dis = Vector3.Distance(stone, this.transform.position);
+        Vector2 stone = target.transform.position;
+        float dis = Vector2.Distance(stone, this.transform.position);
 
-        if(dis < 4.6f) 
+        if(dis < 5f) 
         {
-            Gravity();
+            Vector2 myGravity = new Vector2(0,-Gravity);
+
+            rb.AddForce(myGravity);//Gravity();
         }
+        
+       
 
-        void Gravity() 
+        // void Gravity() 
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            //GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.tag == "Player") {
+
+            Destroy(gameObject);
         }
     }
 }

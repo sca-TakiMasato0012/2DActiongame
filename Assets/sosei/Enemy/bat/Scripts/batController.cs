@@ -10,6 +10,7 @@ public class batController : MonoBehaviour
     [SerializeField]
     private float Angle;//コウモリの角度
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,8 @@ public class batController : MonoBehaviour
         {
             Angle =BatSpeed *  0;
         }
-       
-        //画面上方に消えたらコウモリを消去
+
+            //画面上方に消えたらコウモリを消去
             if (transform.position.x <= -10.0f)
        {
            Destroy(gameObject);
