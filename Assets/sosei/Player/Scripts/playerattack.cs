@@ -13,8 +13,10 @@ public class playerattack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(-10, -10, 0) * Time.deltaTime;
+        transform.position += new Vector3(10,6, 0) * Time.deltaTime;
     }
+
+    
     /*IEnumerator AddForce1() 
     {
         

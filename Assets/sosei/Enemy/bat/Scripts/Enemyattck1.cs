@@ -10,8 +10,9 @@ public class Enemyattck1: MonoBehaviour
     [SerializeField]
     private float Gravity; //石の落下スピード
     
-        // Start is called before the first frame update
-        void Start() 
+
+    // Start is called before the first frame update
+    void Start() 
         {
             rb = GetComponent<Rigidbody2D>();
         }
@@ -19,17 +20,16 @@ public class Enemyattck1: MonoBehaviour
     void Update() 
     {
         Vector2 stone = target.transform.position;
-        float dis = Vector2.Distance(stone, this.transform.position);
+        float dis = Vector2.Distance(stone,this.transform.position);//stone, this.transform.position
 
-        if(dis < 5f) 
+        if (dis < 5) 
         {
             Vector2 myGravity = new Vector2(0,-Gravity);
 
             rb.AddForce(myGravity);//Gravity();
         }
         
-       
-
+      
         // void Gravity() 
         {
             //GetComponent<Rigidbody>().useGravity = true;
@@ -42,4 +42,5 @@ public class Enemyattck1: MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
