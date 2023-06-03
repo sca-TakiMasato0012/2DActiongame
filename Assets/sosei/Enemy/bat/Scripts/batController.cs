@@ -9,29 +9,39 @@ public class batController : MonoBehaviour
 
     [SerializeField]
     private float Angle;//コウモリの角度
+    public GameObject stone;
+
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-     
+        
     }
 
+
+   
     // Update is called once per frame
     void Update()
     {
-        // 左から右に移動
+        // 左上から右下に移動
         transform.position += new Vector3(-BatSpeed, Angle, 0) * Time.deltaTime;
 
-        if(transform.position.y <= 1) 
+       //横に移動
+        if (transform.position.x < -5.0f)
         {
-            Angle =BatSpeed *  0;
+            Angle = BatSpeed * 0;
         }
 
-            //画面上方に消えたらコウモリを消去
-            if (transform.position.x <= -10.0f)
-       {
-           Destroy(gameObject);
-       }
+ 
+        //画面上方に消えたらコウモリを消去
+        if (transform.position.x <= -10.0f)
+        {
+            Destroy(gameObject);
+         }
     }
 }
+
+
+
