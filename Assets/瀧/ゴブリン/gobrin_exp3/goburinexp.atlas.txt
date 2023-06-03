@@ -1,0 +1,71 @@
+goburinexp.png
+size:2447,3071
+filter:Linear,Linear
+pma:true
+Lすね のコピー
+bounds:1551,2798,271,541
+rotate:90
+Lふともも のコピー
+bounds:306,2855,214,464
+rotate:90
+L二の腕
+bounds:2,2893,176,302
+rotate:90
+L前腕_武器なし
+bounds:2094,2651,313,418
+L前腕_武器１
+bounds:2,369,909,870
+L前腕_武器２
+bounds:913,2,952,870
+L前腕_武器３
+bounds:935,874,1132,790
+Rすね のコピー
+bounds:488,2522,331,486
+rotate:90
+Rふともも のコピー
+bounds:772,2855,214,461
+rotate:90
+R二の腕 のコピー
+bounds:1235,2847,222,314
+rotate:90
+R前腕_武器ありあり のコピー
+bounds:2,2035,964,485
+R前腕_武器なし のコピー
+bounds:2,2544,309,484
+rotate:90
+ふくL のコピー
+bounds:968,1666,550,745
+rotate:90
+ふくR のコピー
+bounds:1715,1666,550,730
+rotate:90
+胸部 のコピー
+bounds:976,2465,380,535
+rotate:90
+腹部 のコピー
+bounds:1513,2218,431,674
+rotate:90
+頭 のコピー 2
+bounds:2,1241,931,792
+
+goburinexp_2.png
+size:2190,2709
+filter:Linear,Linear
+pma:true
+打撃２
+bounds:2,1091,1677,1616
+斬撃
+bounds:2,2,1087,2186
+rotate:90
+
+goburinexp_3.png
+size:2432,1999
+filter:Linear,Linear
+pma:true
+L前腕_武器ありあり
+bounds:1150,2,966,871
+打撃１
+bounds:2,586,1146,1411
+打撃３
+bounds:1150,875,1122,1280
+rotate:90
