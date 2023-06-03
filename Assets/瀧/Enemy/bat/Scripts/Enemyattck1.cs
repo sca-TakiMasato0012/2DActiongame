@@ -22,7 +22,7 @@ public class Enemyattck1: MonoBehaviour
         Vector2 stone = target.transform.position;
         float dis = Vector2.Distance(stone,this.transform.position);//stone, this.transform.position
 
-        if (dis < 5) 
+        if (dis < 4) 
         {
             Vector2 myGravity = new Vector2(0,-Gravity);
 

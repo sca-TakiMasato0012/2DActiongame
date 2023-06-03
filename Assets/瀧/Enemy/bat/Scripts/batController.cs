@@ -29,14 +29,14 @@ public class batController : MonoBehaviour
         transform.position += new Vector3(-BatSpeed, Angle, 0) * Time.deltaTime;
 
        //‰¡‚ÉˆÚ“®
-        if (transform.position.x < -5.0f)
+        if (transform.position.x < 6.0f)
         {
             Angle = BatSpeed * 0;
         }
 
  
         //‰æ–Êã•û‚ÉÁ‚¦‚½‚çƒRƒEƒ‚ƒŠ‚ðÁ‹Ž
-        if (transform.position.x <= -10.0f)
+        if (transform.position.x <= -15.0f)
         {
             Destroy(gameObject);
          }
