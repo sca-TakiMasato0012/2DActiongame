@@ -44,19 +44,8 @@ public class batController : MonoBehaviour
         if (transform.position.x <= -15.0f)
         {
             Destroy(gameObject);
-         }
-
-
-        Vector2 bat = target.transform.position;
-        float dis = Vector2.Distance(bat, this.transform.position);//stone, this.transform.position
-
-        
-       
-        if(BatSpeed==0||Angle==0) {
-
-            transform.position += new Vector3(-BatSpeed, Angle, 0) * Time.deltaTime;
         }
-    } 
+    }
 }
 
 
