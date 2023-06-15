@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class batController : MonoBehaviour
 {
+
+    public GameObject target;//playerの取得
+
+    Rigidbody2D rb;//コウモリの当たり判定
+
     [SerializeField]
     private float BatSpeed;//コウモリの移動速度
 
@@ -17,7 +22,7 @@ public class batController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -40,7 +45,18 @@ public class batController : MonoBehaviour
         {
             Destroy(gameObject);
          }
-    }
+
+
+        Vector2 bat = target.transform.position;
+        float dis = Vector2.Distance(bat, this.transform.position);//stone, this.transform.position
+
+        
+       
+        if(BatSpeed==0||Angle==0) {
+
+            transform.position += new Vector3(-BatSpeed, Angle, 0) * Time.deltaTime;
+        }
+    } 
 }
 
 
