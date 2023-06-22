@@ -12,8 +12,7 @@ public class batController : MonoBehaviour
     [SerializeField]
     private float BatSpeed;//コウモリの移動速度
 
-    [SerializeField]
-    private float Angle;//コウモリの角度
+   
     public GameObject stone;
 
     
@@ -30,7 +29,7 @@ public class batController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 左上から右下に移動
+       /* // 左上から右下に移動
         transform.position += new Vector3(-BatSpeed, Angle, 0) * Time.deltaTime;
 
        //横に移動
@@ -38,7 +37,7 @@ public class batController : MonoBehaviour
         {
             Angle = BatSpeed * 0;
         }
-
+       */
  
         //画面上方に消えたらコウモリを消去
         if (transform.position.x <= -15.0f)

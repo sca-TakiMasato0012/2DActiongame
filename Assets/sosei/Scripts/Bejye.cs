@@ -4,27 +4,44 @@ using UnityEngine;
 
 public class Bejye : MonoBehaviour
 {
+    public Transform sunrise;
+    public Transform sunset;
+    // Time to move from sunrise to sunset position, in seconds.
+    public float journeyTime = 1.0f;
+
+    // The time at which the animation started.
+    private float startTime;
+
+    [SerializeField]
+    private float speed;
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
+      
+        // The center of the arc
+        Vector3 center = (sunrise.position + sunset.position) * speed;
+
+        // move the center a bit downwards to make the arc vertical
+        center -= new Vector3(0, -1, 0);
+
+        // Interpolate over the arc relative to center
+        Vector3 riseRelCenter = sunrise.position - center;
+        Vector3 setRelCenter = sunset.position - center;
+
         
+        float fracComplete = (Time.time - startTime) / journeyTime;
+
+        transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
+        transform.position += center;
     }
-
-    Vector3 GetPoint(Vector3 p0,Vector3 p1,Vector3 p2,Vector3 p3, float t) 
-    {
-        var a = Vector3.Lerp(p0,p1,t);
-        var b = Vector3.Lerp(p1, p2, t);
-        var c = Vector3.Lerp(p2, p3, t);
-        var d = Vector3.Lerp(a, b, t);
-        var e = Vector3.Lerp(b, c, t);
-
-        return Vector3.Lerp(d,e,t);
-
-    }
+    
+    
+    
 }
