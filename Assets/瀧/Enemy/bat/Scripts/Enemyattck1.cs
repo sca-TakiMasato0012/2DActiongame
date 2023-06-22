@@ -28,8 +28,14 @@ public class Enemyattck1: MonoBehaviour
 
             rb.AddForce(myGravity);//Gravity();
         }
-        
-      
+
+
+
+        if(transform.position.y < -7.0f) 
+        {
+            Destroy(gameObject);
+        }
+
         // void Gravity() 
         {
             //GetComponent<Rigidbody>().useGravity = true;
