@@ -19,10 +19,10 @@ public class Enemyattck1: MonoBehaviour
 
     void Update() 
     {
-        Vector2 stone = target.transform.position;
-        float dis = Vector2.Distance(stone,this.transform.position);//stone, this.transform.position
+        Vector2 player = target.transform.position;
+        float dis = Vector2.Distance(player,this.transform.position);//stone, this.transform.position
 
-        if (dis < 4) 
+        if (dis < 5) 
         {
             Vector2 myGravity = new Vector2(0,-Gravity);
 

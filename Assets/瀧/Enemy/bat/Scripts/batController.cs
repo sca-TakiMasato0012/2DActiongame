@@ -12,9 +12,7 @@ public class batController : MonoBehaviour
     [SerializeField]
     private float BatSpeed;//コウモリの移動速度
 
-   
-    public GameObject stone;
-
+   private float delteTime = 3.0f;
     
 
 
@@ -22,6 +20,7 @@ public class batController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Destroy(gameObject,delteTime);
     }
 
 
@@ -39,11 +38,7 @@ public class batController : MonoBehaviour
         }
        */
  
-        //画面上方に消えたらコウモリを消去
-        if (transform.position.x <= -15.0f)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }
 

@@ -14,17 +14,20 @@ public class Bejye : MonoBehaviour
 
     [SerializeField]
     private float speed;
+
+
+    //public bool isMoving = false;
+    //private Coroutine movecorutine;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
-      
         // The center of the arc
         Vector3 center = (sunrise.position + sunset.position) * speed;
 
@@ -34,14 +37,11 @@ public class Bejye : MonoBehaviour
         // Interpolate over the arc relative to center
         Vector3 riseRelCenter = sunrise.position - center;
         Vector3 setRelCenter = sunset.position - center;
-
-        
         float fracComplete = (Time.time - startTime) / journeyTime;
-
         transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         transform.position += center;
+       
     }
-    
-    
+   
     
 }
