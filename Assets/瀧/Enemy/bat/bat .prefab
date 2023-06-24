@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5946117839816840240}
   - component: {fileID: 5946117839816840242}
   - component: {fileID: 7623617534988858091}
+  - component: {fileID: 4657544547402549723}
   m_Layer: 0
   m_Name: 'bat '
   m_TagString: Enemy
@@ -95,9 +96,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097fef8528420af43ac12611bbe6360e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1377240496476148, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
   BatSpeed: 4
-  Angle: -2
+  stone: {fileID: 2749070944889486433, guid: a9bf70ff7a0fb6a4885335ab0f36fdfc, type: 3}
 --- !u!114 &7623617534988858091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946117839816840241}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1956cc6913e36224f839404ee1ba623b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BatPrefab: {fileID: 5946117839816840241}
+  appearancerate: 100
+--- !u!114 &4657544547402549723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,8 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5946117839816840241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1956cc6913e36224f839404ee1ba623b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d476f580837b74418ad39f89ee8af20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BatPrefab: {fileID: 5946117839816840241}
-  appearancerate: 100
+  sunrise: {fileID: 0}
+  sunset: {fileID: 0}
+  journeyTime: 1
+  speed: 0
