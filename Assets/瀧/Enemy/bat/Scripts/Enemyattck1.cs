@@ -31,7 +31,7 @@ public class Enemyattck1: MonoBehaviour
 
 
 
-        if(transform.position.y < -7.0f) 
+        if(transform.position.y < -8.0f) 
         {
             Destroy(gameObject);
         }

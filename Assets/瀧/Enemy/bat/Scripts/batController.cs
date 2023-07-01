@@ -5,22 +5,21 @@ using UnityEngine;
 public class batController : MonoBehaviour
 {
 
-    public GameObject target;//playerの取得
-
+    
     Rigidbody2D rb;//コウモリの当たり判定
 
-    [SerializeField]
-    private float BatSpeed;//コウモリの移動速度
-
-   private float delteTime = 3.0f;
     
+   private float destroyTime = 4.0f;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
+        
+
+
         rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject,delteTime);
+        Destroy(gameObject,destroyTime);
     }
 
 
@@ -38,8 +37,8 @@ public class batController : MonoBehaviour
         }
        */
  
-        
     }
+    
 }
 
 
