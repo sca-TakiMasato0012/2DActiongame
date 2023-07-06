@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class batController_2 : MonoBehaviour
 {
@@ -12,13 +13,13 @@ public class batController_2 : MonoBehaviour
     [SerializeField]
     private float BatSpeed;//コウモリの移動速度
 
-    
+   
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
         rb = GetComponent<Rigidbody2D>();
        
     }
@@ -38,8 +39,6 @@ public class batController_2 : MonoBehaviour
             BatSpeed *=0;
         }
 
-       
         
     }
-
 }
