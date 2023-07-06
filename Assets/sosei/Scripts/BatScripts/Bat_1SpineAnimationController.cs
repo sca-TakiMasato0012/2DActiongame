@@ -7,9 +7,12 @@ using Spine;
 public class Bat_1SpineAnimationController : MonoBehaviour
 {
     public GameObject target;//playerの取得
+
+    public GameObject stone;//stoneの取得
     [SerializeField]
     private string testAnimationName = "";
-
+    [SerializeField]
+    private string testAnimationAfter = "";
     private SkeletonAnimation skeletonAnimation = default;
 
     private Spine.AnimationState spineAnimationState = default;
@@ -21,6 +24,7 @@ public class Bat_1SpineAnimationController : MonoBehaviour
     }
 
     bool isAnim = false;
+    bool isAnim2 = false;
     // Update is called once per frame
     void Update() {
 
@@ -31,11 +35,22 @@ public class Bat_1SpineAnimationController : MonoBehaviour
             PlayAnimation();//アニメーションを再生
             isAnim = true;
         }
+       
+       //if(!isAnim2) //stone.GetComponent<Rigidbody>().useGravity = true && 
+      // {
+        //    PlayAnimation2();//アニメーションを再生 ;
+
+      // }
 
     }
 
     private void PlayAnimation() {
 
         spineAnimationState.SetAnimation(0, testAnimationName, true);
+    }
+
+    private void PlayAnimation2() {
+
+        spineAnimationState.SetAnimation(0, testAnimationAfter, true);
     }
 }

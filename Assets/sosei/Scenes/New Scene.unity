@@ -5525,7 +5525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 715253895}
+  stone: {fileID: 1097418933}
   testAnimationName: atk/atk_1_motion
+  testAnimationAfter: kihon/hirai
 --- !u!1 &1044419584
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +5714,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1097418933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1645160170765927198, guid: 9306d7df7fefec341bf99bfec63a0422,
+    type: 3}
+  m_PrefabInstance: {fileID: 69442225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1292634887
 GameObject:
   m_ObjectHideFlags: 0
