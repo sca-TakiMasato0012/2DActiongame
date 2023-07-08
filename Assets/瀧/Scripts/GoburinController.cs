@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GoburinController : MonoBehaviour
 {
-    private MeshRenderer sr = null;
+    public SearchArea searchArea;
 
+    private bool isSearchArea = false;
     void Start()
     {
-        sr = GetComponent<MeshRenderer>();
+//        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if(sr.isVisible)
+        isSearchArea = searchArea.IsSearching();
+
+        if(isSearchArea)
         {
-            Debug.Log("aioeagh");
+            Debug.Log("はいってるよ");
         }
     }
 }
