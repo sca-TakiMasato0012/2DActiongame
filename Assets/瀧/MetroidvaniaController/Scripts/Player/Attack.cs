@@ -5,14 +5,20 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
 	public float dmgValue = 4;
-	public GameObject throwableObject;
+	
 	public Transform attackCheck;
 	private Rigidbody2D m_Rigidbody2D;
 	public Animator animator;
 	public bool canAttack = true;
-	public bool isTimeToCheck = false;
+	public bool canAttack2 = true;
 
-	public GameObject cam;
+	public GameObject ya;
+
+	[SerializeField]
+	private float kenCooldown = 0;//剣のクールタイム
+	[SerializeField]
+	private float yaCooldown = 0;//弓のクールタイム
+
 
 	private void Awake()
 	{
@@ -28,29 +34,37 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.X) && canAttack)
+		if (Input.GetKeyDown(KeyCode.X) && canAttack)//剣を振る　アニメーションを再生
 		{
 			canAttack = false;
 			animator.SetBool("IsAttacking", true);
 			StartCoroutine(AttackCooldown());
 		}
 
-		if (Input.GetKeyDown(KeyCode.V))
+		if (Input.GetKeyDown(KeyCode.V) && canAttack2)//矢を放つ
 		{
-			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			Vector2 direction = new Vector2(transform.localScale.x, 0);
-			throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-			throwableWeapon.name = "ThrowableWeapon";
+			canAttack2 = false;
+			Instantiate(ya,transform.position,transform.rotation);
+			StartCoroutine(AttackCooldown2());
 		}
 	}
 
-	IEnumerator AttackCooldown()
+	IEnumerator AttackCooldown()//剣のクールタイム
 	{
-		yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSeconds(kenCooldown);
 		canAttack = true;
+		canAttack2 = true;
 	}
 
-	public void DoDashDamage()
+	IEnumerator AttackCooldown2() 
+	{
+
+		yield return new WaitForSeconds(yaCooldown);//矢のクールタイム
+
+		canAttack2 = true;
+	}
+
+	public void DoDashDamage()//敵に与えるダメージ
 	{
 		dmgValue = Mathf.Abs(dmgValue);
 		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
@@ -63,8 +77,9 @@ public class Attack : MonoBehaviour
 					dmgValue = -dmgValue;
 				}
 				collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
-				cam.GetComponent<CameraFollow>().ShakeCamera();
+				//cam.GetComponent<CameraFollow>().ShakeCamera();
 			}
 		}
 	}
+	
 }

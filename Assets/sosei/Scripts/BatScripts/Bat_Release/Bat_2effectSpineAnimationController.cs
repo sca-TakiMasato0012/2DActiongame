@@ -10,7 +10,10 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
 
     public GameObject target;//playerの取得
     [SerializeField]
-    private string testAnimationName = "";
+    private string Start_Animation = "";
+    [SerializeField]
+    private string After_Animation = "";
+
 
     private SkeletonAnimation skeletonAnimation = default;
 
@@ -23,6 +26,7 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
     }
 
     bool isAnim = false;
+    bool isAnim2 = false;
     // Update is called once per frame
     void Update() {
 
@@ -30,14 +34,21 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
 
         float dis = Vector2.Distance(player, this.transform.position);//playerを見つけたら
         if(dis < 8 && !isAnim) {
-            PlayAnimation();//アニメーションを再生
+            PlayAnimation(Start_Animation);//アニメーションを再生
             isAnim = true;
         }
+        if(dis < 5 && !isAnim2) 
+        {
+            PlayAnimation(After_Animation);//アニメーションを再生
+            isAnim2 = true;
+        }
+
 
     }
 
-    private void PlayAnimation() {
+    private void PlayAnimation(string name) {
 
-        spineAnimationState.SetAnimation(0, testAnimationName, true);
+        spineAnimationState.SetAnimation(0, Start_Animation, true);
     }
+
 }

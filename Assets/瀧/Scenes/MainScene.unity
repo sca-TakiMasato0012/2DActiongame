@@ -8025,7 +8025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1776989064}
-  testAnimationName: atk/atk_2_effect
+  Start_Animation: atk/atk_2_effect
+  After_Animation: atk/atk_2_effect
 --- !u!1001 &854742139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9029,9 +9030,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1776989064}
-  stone: {fileID: 0}
-  testAnimationName: atk/atk_1_motion
-  testAnimationAfter: 
+  stone: {fileID: 1856110270}
+  Start_Animation: atk/atk_1_motion
+  After_Animation: kihon/huyuu
 --- !u!1 &1362202297
 GameObject:
   m_ObjectHideFlags: 0
@@ -9602,6 +9603,22 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff,
+        type: 3}
+      propertyPath: ya
+      value: 
+      objectReference: {fileID: 3642909346512854364, guid: 0f6f224f14d4aba4da9aae300b1c2001,
+        type: 3}
+    - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff,
+        type: 3}
+      propertyPath: yaCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff,
+        type: 3}
+      propertyPath: kenCooldown
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
 --- !u!1 &1776989064 stripped
@@ -9609,6 +9626,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1377240496476148, guid: 50936cccdb69523458c1b42052ebafff,
     type: 3}
   m_PrefabInstance: {fileID: 1771547208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1856110270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1645160170765927198, guid: 9306d7df7fefec341bf99bfec63a0422,
+    type: 3}
+  m_PrefabInstance: {fileID: 854742139}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1913112179
 GameObject:
