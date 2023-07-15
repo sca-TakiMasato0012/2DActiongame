@@ -33,7 +33,7 @@ public class Arrow_Bejye : MonoBehaviour
         {
 
             Destroy(gameObject);
-
+            Debug.Log("あたった！");
         }
         
     }

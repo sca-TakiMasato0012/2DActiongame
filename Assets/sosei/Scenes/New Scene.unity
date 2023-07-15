@@ -1239,6 +1239,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2997058654347226375, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369710591465759130, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.37331402
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369710591465759130, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 8.547342
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369710591465759130, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.0311024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369710591465759130, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6073442
+      objectReference: {fileID: 0}
     - target: {fileID: 4730406540905050544, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: skeletonDataAsset
@@ -1248,7 +1273,7 @@ PrefabInstance:
     - target: {fileID: 4730406540905050544, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: _animationName
-      value: kihon/huyuu
+      value: atk/atk_2_effect_loop
       objectReference: {fileID: 0}
     - target: {fileID: 4730406540905050544, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
@@ -1258,7 +1283,7 @@ PrefabInstance:
     - target: {fileID: 4730406540905050545, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4730406540905050545, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
@@ -1360,7 +1385,9 @@ PrefabInstance:
       propertyPath: BatSpeed
       value: -5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a124c6e08bb366842bc41eb66bb94397, type: 3}
 --- !u!1 &1903971129 stripped
 GameObject:
@@ -1374,20 +1401,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1903971128}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1903971135
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903971129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &1903971136
 MonoBehaviour:
   m_ObjectHideFlags: 0
