@@ -11,14 +11,17 @@ public class Attack : MonoBehaviour
 	public Animator animator;
 	public bool canAttack = true;
 	public bool canAttack2 = true;
+	public bool canAttack3 = true;
 
 	public GameObject ya;
+	public GameObject ya2;
 
 	[SerializeField]
 	private float kenCooldown = 0;//剣のクールタイム
 	[SerializeField]
 	private float yaCooldown = 0;//弓のクールタイム
-
+	[SerializeField]
+	private float yaCooldown2 = 0;//弓のクールタイム
 
 	private void Awake()
 	{
@@ -47,6 +50,13 @@ public class Attack : MonoBehaviour
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
 		}
+		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		//if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
+		//{
+			//canAttack2 = false;
+			//Instantiate(ya2, transform.position, transform.rotation);
+			//StartCoroutine(AttackCooldown2());
+		//}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	}
 
 	IEnumerator AttackCooldown()//剣のクールタイム
@@ -62,6 +72,14 @@ public class Attack : MonoBehaviour
 		yield return new WaitForSeconds(yaCooldown);//矢のクールタイム
 
 		canAttack2 = true;
+	}
+
+	IEnumerator AttackCooldown3()
+	{
+
+		yield return new WaitForSeconds(yaCooldown);//矢のクールタイム
+
+		canAttack3 = true;
 	}
 
 	public void DoDashDamage()//敵に与えるダメージ

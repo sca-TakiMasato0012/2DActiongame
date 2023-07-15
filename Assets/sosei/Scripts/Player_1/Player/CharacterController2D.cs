@@ -142,7 +142,7 @@ public class CharacterController2D : MonoBehaviour
 			// しゃがんでいる場合は、キャラクターが立ち上がることができるかどうかを確認してください
 			if(isDashing)
 			{
-				m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * m_DashForce, 0);
+				m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * -m_DashForce, 0);
 			}
 			//地上にある場合、または airControl がオンになっている場合にのみプレーヤーを制御します
 			else if (m_Grounded || m_AirControl)

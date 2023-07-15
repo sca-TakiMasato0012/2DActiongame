@@ -22,7 +22,8 @@ public class ArrowDef : MonoBehaviour
     {
         transform.Translate(Vector2.left * -Arrowspeed * Time.deltaTime);
 
-        
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
