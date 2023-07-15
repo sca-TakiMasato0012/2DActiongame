@@ -30,8 +30,10 @@ public class ArrowDef : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy") {
 
+            
             Destroy(gameObject);
+            Debug.Log("あたった");
         }
-        Debug.Log("あたった");
+        
     }
 }

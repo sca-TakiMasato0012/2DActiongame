@@ -50,13 +50,13 @@ public class Attack : MonoBehaviour
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
 		}
-		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		//if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
-		//{
-			//canAttack2 = false;
-			//Instantiate(ya2, transform.position, transform.rotation);
-			//StartCoroutine(AttackCooldown2());
-		//}\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		
+		if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
+		{
+			canAttack3 = false;
+			Instantiate(ya2,transform.position, transform.rotation);
+			StartCoroutine(AttackCooldown3());
+		}
 	}
 
 	IEnumerator AttackCooldown()//剣のクールタイム
@@ -77,7 +77,7 @@ public class Attack : MonoBehaviour
 	IEnumerator AttackCooldown3()
 	{
 
-		yield return new WaitForSeconds(yaCooldown);//矢のクールタイム
+		yield return new WaitForSeconds(yaCooldown2);//矢のクールタイム
 
 		canAttack3 = true;
 	}

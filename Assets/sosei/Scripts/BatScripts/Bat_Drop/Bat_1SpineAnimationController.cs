@@ -37,7 +37,7 @@ public class Bat_1SpineAnimationController : MonoBehaviour
             isAnim = true;
         }
 
-        if(dis < 4 && !isAnim) //もし石が落ちたら
+        if(dis < 4 && isAnim) //もし石が落ちたら
         { 
          PlayAnimation(After_Animation);//hirai/kakuuアニメーションを再生 
 

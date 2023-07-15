@@ -9,6 +9,7 @@ TagManager:
   - Barrier
   - Camera
   - Goburin
+  - ArrowCheck
   layers:
   - Default
   - TransparentFX
