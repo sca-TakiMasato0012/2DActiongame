@@ -8217,10 +8217,8 @@ GameObject:
   - component: {fileID: 894297401}
   - component: {fileID: 894297400}
   - component: {fileID: 894297399}
-  - component: {fileID: 894297403}
   - component: {fileID: 894297405}
   - component: {fileID: 894297404}
-  - component: {fileID: 894297406}
   m_Layer: 0
   m_Name: Goburin
   m_TagString: Goburin
@@ -8265,7 +8263,7 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: attack/L_attack1
+  _animationName: taiki/L_taiki1
   loop: 1
   timeScale: 1
 --- !u!23 &894297400
@@ -8330,20 +8328,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &894297403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894297398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f7489634ce69d949868080af37ae2f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testAnimationNameBefore: walk/L_walk
-  testAnimationNameAfter: death/L_death1
 --- !u!114 &894297404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8357,6 +8341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchArea: {fileID: 543630041}
+  target: {fileID: 1776989064}
+  Start_Animation: walk/L_walk
+  After_Animation: attack/L_attack1
 --- !u!70 &894297405
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8373,25 +8360,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.6781349, y: 9.958915}
   m_Size: {x: 12.218655, y: 21.42958}
   m_Direction: 0
---- !u!95 &894297406
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894297398}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3206b113df3d74849bae03c76a9614e2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &907186583
 GameObject:
   m_ObjectHideFlags: 0
