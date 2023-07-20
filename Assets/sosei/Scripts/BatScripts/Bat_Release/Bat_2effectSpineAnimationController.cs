@@ -9,13 +9,16 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
 
 
     public GameObject target;//playerの取得
+
     [SerializeField]
-    private string Start_Animation = "";
+    private string orignal_Animation = "";
     [SerializeField]
-    private string After_Animation = "";
+    private string Start_Animation = "";//Effect2のアニメーション
+    [SerializeField]
+    private string After_Animation = "";//ひるむアニメーション
 
 
-    private SkeletonAnimation skeletonAnimation = default;
+    private SkeletonAnimation skeletonAnimation = default;//飛来するアニメーション
 
     private Spine.AnimationState spineAnimationState = default;
     // Start is called before the first frame update
@@ -26,29 +29,43 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
     }
 
     bool isAnim = false;
-    bool isAnim2 = false;
+    
     // Update is called once per frame
     void Update() {
+       
 
         Vector2 player = target.transform.position;
 
         float dis = Vector2.Distance(player, this.transform.position);//playerを見つけたら
-        if(dis < 8 && !isAnim) {
-            PlayAnimation(Start_Animation);//アニメーションを再生
-            isAnim = true;
-        }
-        if(dis < 5 && !isAnim2) 
+        if(dis < 8 && !isAnim) 
         {
-            PlayAnimation(After_Animation);//アニメーションを再生
-            isAnim2 = true;
-        }
+            PlayAnimation(Start_Animation);//Effect2のアニメーションを再生
+            isAnim = true;
 
+        }
 
     }
 
-    private void PlayAnimation(string name) {
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {//攻撃をくらったら
+    
+        if(collision.gameObject.tag == "ya") 
+        {
+
+        PlayAnimation(After_Animation);//ひるむアニメーションを再生
+
+        Debug.Log("yaがEffectにあたった!");
+        } 
+        
+    }
+
+
+
+    public void PlayAnimation(string name) {
 
         spineAnimationState.SetAnimation(0, Start_Animation, true);
     }
 
+
+    
 }

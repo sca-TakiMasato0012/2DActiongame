@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	public float dmgValue = 4;
+
 	
 	public Transform attackCheck;
+
 	private Rigidbody2D m_Rigidbody2D;
+
 	public Animator animator;
+
+
 	public bool canAttack = true;
 	public bool canAttack2 = true;
 	public bool canAttack3 = true;
@@ -82,22 +86,6 @@ public class Attack : MonoBehaviour
 		canAttack3 = true;
 	}
 
-	public void DoDashDamage()//敵に与えるダメージ
-	{
-		dmgValue = Mathf.Abs(dmgValue);
-		Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
-		for (int i = 0; i < collidersEnemies.Length; i++)
-		{
-			if (collidersEnemies[i].gameObject.tag == "Enemy")
-			{
-				if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
-				{
-					dmgValue = -dmgValue;
-				}
-				collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
-				//cam.GetComponent<CameraFollow>().ShakeCamera();
-			}
-		}
-	}
+	
 	
 }

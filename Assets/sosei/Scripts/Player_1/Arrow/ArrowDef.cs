@@ -6,7 +6,9 @@ public class ArrowDef : MonoBehaviour
 {
     Rigidbody2D rb;
     private float Arrow_destroy = 5.0f;
-  
+
+
+   
 
     [SerializeField]
     private float Arrowspeed = 0f;
@@ -15,6 +17,7 @@ public class ArrowDef : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, Arrow_destroy);
+
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class ArrowDef : MonoBehaviour
 
             
             Destroy(gameObject);
-            Debug.Log("あたった");
+            Debug.Log("bat_ReleaseとEffectにあたった");
         }
         
     }

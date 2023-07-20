@@ -10,6 +10,7 @@ TagManager:
   - Camera
   - Goburin
   - ArrowCheck
+  - ya
   layers:
   - Default
   - TransparentFX
