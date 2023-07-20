@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  orignal_Animation: 
   Start_Animation: atk/atk_2_effect_loop
   After_Animation: atk/atk_2_effect
 --- !u!1 &7554748817686842627
@@ -173,7 +174,6 @@ GameObject:
   - component: {fileID: 7554748817686842655}
   - component: {fileID: 7554748817686842654}
   - component: {fileID: 7554748817686842625}
-  - component: {fileID: 7554748817686842624}
   m_Layer: 0
   m_Name: but_Release
   m_TagString: Enemy
@@ -296,6 +296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  default_Animation: 
+  Start_Animation: 
+  After_Animation: 
+  Bat_Hp: 0
+  Destroy_Animation: 
   BatSpeed: -5
 --- !u!68 &7554748817686842625
 EdgeCollider2D:
@@ -322,18 +327,3 @@ EdgeCollider2D:
   - {x: -0.00030125177, y: 7.534455}
   - {x: -2.2734807, y: 8.494975}
   - {x: -0.6839783, y: 10.155584}
---- !u!114 &7554748817686842624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7554748817686842627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f47beb4ad0ba6849bb3c2a956ba059c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  Start_Animation: atk/atk_2_motion
-  After_Animation: damage/hirumi

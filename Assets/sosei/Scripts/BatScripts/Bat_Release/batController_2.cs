@@ -2,11 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Spine;
+
 
 public class batController_2 : MonoBehaviour
 {
 
+
     public GameObject target;//playerの取得
+    [SerializeField]
+    private string default_Animation = "";
+    [SerializeField]
+    private string Start_Animation = "";//攻撃アニメーション
+    [SerializeField]
+    private string After_Animation = "";//ひるむアニメーション
+    [SerializeField]
+    private float Bat_Hp = 0;//コウモリのHP
+    [SerializeField]
+    private string Destroy_Animation = "";//死ぬアニメーション
+
+    private SkeletonAnimation skeletonAnimation = default;//飛来するアニメーションを再生
+
+    private Spine.AnimationState spineAnimationState = default;
+
+    
 
     Rigidbody2D rb;//コウモリの当たり判定
 
@@ -14,21 +33,16 @@ public class batController_2 : MonoBehaviour
     private float BatSpeed;
     private bool Speed = true;//コウモリの移動速度
 
-    Bat_2SpineAnimationController bc;
-    string default_animation = "kihon/huyuu";
-    
-
-
     // Start is called before the first frame update
     void Start()
     {
-        
-        rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<Bat_2SpineAnimationController>();
-        
+        skeletonAnimation = GetComponent<SkeletonAnimation>();
+
+        spineAnimationState = skeletonAnimation.AnimationState;
     }
 
-
+    bool isAnim = false;
+    bool isAnim2 = false;
 
     // Update is called once per frame
     void Update()
@@ -39,22 +53,37 @@ public class batController_2 : MonoBehaviour
         Vector2 player = target.transform.position;
 
         float dis = Vector2.Distance(player, this.transform.position);
-        if (dis < 8)
+
+        //playerを見つけたら
+
+        if (dis < 8 && !isAnim)
         {
-           BatSpeed *=0;
+            PlayAnimation(Start_Animation);//攻撃アニメーションを再生
+            BatSpeed *= 0;
+            isAnim = true;
+
         }
 
-        
+        if (Bat_Hp <= 0)//もし倒されたら
+        {
+
+            PlayAnimation(Destroy_Animation);//死ぬアニメーションを再生
+            Destroy(gameObject);
+
+        }
+
     }
-    private void OnCollisionEnter2D(Collision2D collision) 
-    {//攻撃をくらったら
 
-        if(collision.gameObject.tag == "ya") {
+    private void OnCollisionEnter2D(Collision2D collision)//攻撃をくらったら
+    {
+        if (collision.gameObject.tag == "ya")
+        {
+            PlayAnimation(After_Animation);//ひるむアニメーションを再生
 
-            BatSpeed *=0;
+            Bat_Hp = Bat_Hp - 1.0f;//矢をくらったら１ダメージ
+
+            BatSpeed *= 0;
             StartCoroutine(BatMoveCooldown());
-            bc.PlayAnimation(default_animation);
-            //bf.PlayAnimation(orignal_animation);
             Debug.Log("yaがEffectにあたった!");
         }
 
@@ -64,5 +93,15 @@ public class batController_2 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         BatSpeed = -5.0f;
+        
     }
+
+
+    public void PlayAnimation(string name)
+    {
+
+        spineAnimationState.SetAnimation(0, Start_Animation, true);
+    }
+
+    
 }

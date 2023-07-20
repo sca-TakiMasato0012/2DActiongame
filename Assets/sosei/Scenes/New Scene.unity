@@ -696,11 +696,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.7
+      value: -6.44
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.72
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1047,31 +1047,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7554748817686842624, guid: a124c6e08bb366842bc41eb66bb94397,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 715253895}
-    - target: {fileID: 7554748817686842624, guid: a124c6e08bb366842bc41eb66bb94397,
-        type: 3}
-      propertyPath: Start_Animation
-      value: atk/atk_2_motion
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554748817686842624, guid: a124c6e08bb366842bc41eb66bb94397,
-        type: 3}
-      propertyPath: Bat_Hp
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554748817686842624, guid: a124c6e08bb366842bc41eb66bb94397,
-        type: 3}
-      propertyPath: Destroy_Animation
-      value: damage/death
-      objectReference: {fileID: 0}
-    - target: {fileID: 7554748817686842624, guid: a124c6e08bb366842bc41eb66bb94397,
-        type: 3}
-      propertyPath: default_Animation
-      value: kihon/huyuu
-      objectReference: {fileID: 0}
     - target: {fileID: 7554748817686842627, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_Name
@@ -1080,12 +1055,12 @@ PrefabInstance:
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.64
+      value: 19.14
       objectReference: {fileID: 0}
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.14
+      value: -5.32
       objectReference: {fileID: 0}
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
@@ -1142,6 +1117,31 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 715253895}
+    - target: {fileID: 7554748817686842654, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: Bat_Hp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554748817686842654, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: default_Animation
+      value: kihon/huyuu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554748817686842654, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: Start_Animation
+      value: atk/atk_2_motion
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554748817686842654, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: After_Animation
+      value: damage/hirumi
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554748817686842654, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: Destroy_Animation
+      value: damage/death
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a124c6e08bb366842bc41eb66bb94397, type: 3}
 --- !u!1001 &7654743008956228930
