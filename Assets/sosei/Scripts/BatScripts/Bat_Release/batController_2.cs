@@ -78,7 +78,7 @@ public class batController_2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "ya")
         {
-            PlayAnimation(After_Animation);//ひるむアニメーションを再生
+            //PlayAnimation(After_Animation);//ひるむアニメーションを再生
 
             Bat_Hp = Bat_Hp - 1.0f;//矢をくらったら１ダメージ
 
@@ -86,16 +86,21 @@ public class batController_2 : MonoBehaviour
             StartCoroutine(BatMoveCooldown());
             Debug.Log("yaがEffectにあたった!");
         }
+        else
+        {
+            PlayAnimation(default_Animation);
 
+        }
+        
     }
 
     IEnumerator BatMoveCooldown()//ひるむ
     {
         yield return new WaitForSeconds(0.5f);
+
         BatSpeed = -5.0f;
         
     }
-
 
     public void PlayAnimation(string name)
     {

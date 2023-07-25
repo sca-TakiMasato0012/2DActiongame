@@ -52,10 +52,14 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
         if(collision.gameObject.tag == "ya") 
         {
 
-        PlayAnimation(After_Animation);//ひるむアニメーションを再生
+            //PlayAnimation(After_Animation);//ひるむアニメーションを再生
 
         Debug.Log("yaがEffectにあたった!");
-        } 
+        }
+        else
+        {
+            PlayAnimation(orignal_Animation);
+        }
         
     }
 

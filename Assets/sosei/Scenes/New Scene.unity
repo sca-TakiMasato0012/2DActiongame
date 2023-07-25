@@ -378,8 +378,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044419584}
-  m_LocalRotation: {x: -0, y: -0, z: 0.000000014901161, w: 1}
-  m_LocalPosition: {x: -13.430004, y: -0.9200004, z: -0.6796875}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000014901159, w: 1}
+  m_LocalPosition: {x: -13.430004, y: -0.91999865, z: -0.6796875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1040,6 +1040,11 @@ PrefabInstance:
     - target: {fileID: 7554748817044645666, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: default_Animation
+      value: kihon/huyuu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554748817044645666, guid: a124c6e08bb366842bc41eb66bb94397,
+        type: 3}
+      propertyPath: orignal_Animation
       value: kihon/huyuu
       objectReference: {fileID: 0}
     - target: {fileID: 7554748817044645694, guid: a124c6e08bb366842bc41eb66bb94397,
