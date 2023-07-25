@@ -46,8 +46,8 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
-    {//攻撃をくらったら
+    private void OnCollisionEnter2D(Collision2D collision) //攻撃をくらったら
+    {
     
         if(collision.gameObject.tag == "ya") 
         {
