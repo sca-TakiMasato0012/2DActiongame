@@ -102,6 +102,4 @@ public class batController_2 : MonoBehaviour
 
         spineAnimationState.SetAnimation(0, Start_Animation, true);
     }
-
-    
 }

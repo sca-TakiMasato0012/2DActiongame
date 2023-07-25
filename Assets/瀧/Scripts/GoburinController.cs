@@ -14,17 +14,22 @@ public class GoburinController : MonoBehaviour
 
     private bool isSearchArea = false;
 
+    private float dis;
+
+    //private bool isAttack = false;
+
     [SerializeField]
-    private string Stop_Animation = "";
+    private string Stop_Animation = ""; //待機モーション
     [SerializeField]
-    private string Start_Animation = "";
+    private string Start_Animation = ""; //歩くモーション
     [SerializeField]
-    private string After_Animation = "";
+    private string After_Animation = ""; //攻撃モーション
 
     [SerializeField]
     private float GoburinSpeed = 2.5f;//ゴブリンの移動速度
 
     private SkeletonAnimation skeletonAnimation = default;
+
 
     private Spine.AnimationState spineAnimationState = default;
     void Start()
@@ -34,12 +39,16 @@ public class GoburinController : MonoBehaviour
         skeletonAnimation = GetComponent<SkeletonAnimation>();
 
         spineAnimationState = skeletonAnimation.AnimationState;
+
+        PlayAnimation(Stop_Animation); //最初は待機モーション
+        isAnim = true;
     }
 
     bool isAnim = false;
 
     void Update()
     {
+        dis = Vector3.Distance(transform.position, target.transform.position);
 
         Vector2 player = target.transform.position;
 
@@ -47,32 +56,39 @@ public class GoburinController : MonoBehaviour
 
         if (!isAnim)
         {
-            PlayAnimation(Start_Animation);//アニメーションを再生
+            PlayAnimation(Start_Animation);//歩くアニメーションを再生
             isAnim = true;
         }
             
 
-        if (isSearchArea)
+        if (isSearchArea) //Playerが範囲内に入ると歩き出す
         {
 
              float dis = Vector2.Distance(player, this.transform.position);
             if (dis < 1.5f)
             {
-                GoburinSpeed = 0;
+                //isAttack = true;
+              
 
+                Attack();
             }
              else
              {
                 GoburinSpeed = 2.5f;
+
+                //ここで歩きながら攻撃しちゃうから修正
              }
-
-
 
             transform.position += new Vector3(-GoburinSpeed, 0, 0) * Time.deltaTime;
             Debug.Log("はいってるよ");
         }
-        
 
+        if(!isSearchArea) //Playerが範囲内から抜けたら止まる
+        {
+            PlayAnimation(Stop_Animation);
+            isAnim = false;
+        }
+        
     }
 
     private void PlayAnimation(string name)
@@ -81,4 +97,24 @@ public class GoburinController : MonoBehaviour
         spineAnimationState.SetAnimation(0, name, true);
     }
 
+    public void Attack()
+    {
+        dis = Vector3.Distance(transform.position, target.transform.position);
+
+        GoburinSpeed = 0;
+
+        if (dis < 2f)
+        {
+            PlayAnimation(After_Animation);//攻撃アニメーションを再生
+            isAnim = true;
+        }
+        else
+        {
+            PlayAnimation(Stop_Animation);//待機アニメーションを再生
+            isAnim = false;
+
+            //PlayAnimation(After_Animation);//攻撃アニメーションを再生
+            //isAnim = false;
+        }
+    }
 }
