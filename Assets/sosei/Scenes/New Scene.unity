@@ -741,10 +741,20 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a3c27b3edc7c7dd49aa745bbedc2eed1, type: 2}
+    - target: {fileID: 95975118031919256, guid: 50936cccdb69523458c1b42052ebafff,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114145887554720856, guid: 50936cccdb69523458c1b42052ebafff,
         type: 3}
       propertyPath: runSpeed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114145887554720856, guid: 50936cccdb69523458c1b42052ebafff,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114231493902538710, guid: 50936cccdb69523458c1b42052ebafff,
         type: 3}
@@ -971,6 +981,7 @@ GameObject:
   - component: {fileID: 1762761921}
   - component: {fileID: 1762761926}
   - component: {fileID: 1762761925}
+  - component: {fileID: 1762761927}
   m_Layer: 1
   m_Name: Spine GameObject
   m_TagString: Player
@@ -1085,7 +1096,7 @@ Transform:
   m_GameObject: {fileID: 1762761920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.832, y: -4.9, z: 0}
-  m_LocalScale: {x: 0.085527495, y: 0.08, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -1127,6 +1138,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1762761927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762761920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2280e063982bc1245bbeb6dc4f6de0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_moveSpeed: 6
+  taiki_ken_Animation: kihon_anime/taiki/taiki_ken
+  taiki_yumi_Animation: kihon_anime/taiki/taiki_yumi
+  run_Animation: kihon_anime/hokou/hokou_ken
+  dash_Animation: kihon_anime/kaihi/kaihi_ken
 --- !u!1 &1945746749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,12 +1303,12 @@ PrefabInstance:
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.14
+      value: 19.56
       objectReference: {fileID: 0}
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.32
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 7554748817686842650, guid: a124c6e08bb366842bc41eb66bb94397,
         type: 3}
