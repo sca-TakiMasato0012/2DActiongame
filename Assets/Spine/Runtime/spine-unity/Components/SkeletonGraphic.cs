@@ -1,16 +1,16 @@
 /******************************************************************************
  * Spine Runtimes License Agreement
- * Last updated September 24, 2021. Replaces all prior versions.
+ * Last updated July 28, 2023. Replaces all prior versions.
  *
- * Copyright (c) 2013-2021, Esoteric Software LLC
+ * Copyright (c) 2013-2023, Esoteric Software LLC
  *
  * Integration of the Spine Runtimes into software or otherwise creating
  * derivative works of the Spine Runtimes is permitted under the terms and
  * conditions of Section 2 of the Spine Editor License Agreement:
  * http://esotericsoftware.com/spine-editor-license
  *
- * Otherwise, it is permitted to integrate the Spine Runtimes into software
- * or otherwise create derivative works of the Spine Runtimes (collectively,
+ * Otherwise, it is permitted to integrate the Spine Runtimes into software or
+ * otherwise create derivative works of the Spine Runtimes (collectively,
  * "Products"), provided that each user of the Products must obtain their own
  * Spine Editor license and redistribution of the Products in any form must
  * include this license and copyright notice.
@@ -23,8 +23,8 @@
  * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES,
  * BUSINESS INTERRUPTION, OR LOSS OF USE, DATA, OR PROFITS) HOWEVER CAUSED AND
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THE
+ * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
 #if UNITY_2018_3 || UNITY_2019 || UNITY_2018_3_OR_NEWER
@@ -588,6 +588,13 @@ namespace Spine.Unity {
 			SetRectTransformSize(this, size);
 			this.rectTransform.pivot = p;
 
+			foreach (Transform separatorPart in separatorParts) {
+				RectTransform separatorTransform = separatorPart.GetComponent<RectTransform>();
+				if (separatorTransform) {
+					SetRectTransformSize(separatorTransform, size);
+					separatorTransform.pivot = p;
+				}
+			}
 			foreach (SkeletonSubmeshGraphic submeshGraphic in submeshGraphics) {
 				SetRectTransformSize(submeshGraphic, size);
 				submeshGraphic.rectTransform.pivot = p;
@@ -595,14 +602,18 @@ namespace Spine.Unity {
 		}
 
 		public static void SetRectTransformSize (Graphic target, Vector2 size) {
+			SetRectTransformSize(target.rectTransform, size);
+		}
+
+		public static void SetRectTransformSize (RectTransform targetRectTransform, Vector2 size) {
 			Vector2 parentSize = Vector2.zero;
-			if (target.rectTransform.parent != null) {
-				RectTransform parentTransform = target.rectTransform.parent.GetComponent<RectTransform>();
+			if (targetRectTransform.parent != null) {
+				RectTransform parentTransform = targetRectTransform.parent.GetComponent<RectTransform>();
 				if (parentTransform)
 					parentSize = parentTransform.rect.size;
 			}
-			Vector2 anchorAreaSize = Vector2.Scale(target.rectTransform.anchorMax - target.rectTransform.anchorMin, parentSize);
-			target.rectTransform.sizeDelta = size - anchorAreaSize;
+			Vector2 anchorAreaSize = Vector2.Scale(targetRectTransform.anchorMax - targetRectTransform.anchorMin, parentSize);
+			targetRectTransform.sizeDelta = size - anchorAreaSize;
 		}
 
 		/// <summary>OnAnimationRebuild is raised after the SkeletonAnimation component is successfully initialized.</summary>
@@ -944,42 +955,52 @@ namespace Spine.Unity {
 			int submeshCount = currentInstructions.submeshInstructions.Count;
 			DisableUnusedCanvasRenderers(usedCount: submeshCount, isInRebuild: isInRebuild);
 
-			int separatorSlotGroupIndex = 0;
-			int targetSiblingIndex = 0;
-			Transform parent = this.separatorSlots.Count == 0 ? this.transform : this.separatorParts[0];
+			Transform parent = this.separatorParts.Count == 0 ? this.transform : this.separatorParts[0];
 			if (updateSeparatorPartLocation) {
 				for (int p = 0; p < this.separatorParts.Count; ++p) {
-					separatorParts[p].position = this.transform.position;
-					separatorParts[p].rotation = this.transform.rotation;
+					Transform separatorPart = separatorParts[p];
+					if (separatorPart == null) continue;
+					separatorPart.position = this.transform.position;
+					separatorPart.rotation = this.transform.rotation;
 				}
 			}
 			if (updateSeparatorPartScale) {
 				Vector3 targetScale = this.transform.lossyScale;
 				for (int p = 0; p < this.separatorParts.Count; ++p) {
-					Transform partParent = separatorParts[p].transform.parent;
+					Transform separatorPart = separatorParts[p];
+					if (separatorPart == null) continue;
+					Transform partParent = separatorPart.parent;
 					Vector3 parentScale = partParent == null ? Vector3.one : partParent.lossyScale;
-					separatorParts[p].localScale = new Vector3(
+					separatorPart.localScale = new Vector3(
 						parentScale.x == 0f ? 1f : targetScale.x / parentScale.x,
 						parentScale.y == 0f ? 1f : targetScale.y / parentScale.y,
 						parentScale.z == 0f ? 1f : targetScale.z / parentScale.z);
 				}
 			}
 
+			int separatorSlotGroupIndex = 0;
+			int targetSiblingIndex = 0;
 			for (int i = 0; i < submeshCount; i++) {
 				CanvasRenderer canvasRenderer = canvasRenderers[i];
-				if (i >= usedRenderersCount)
-					canvasRenderer.gameObject.SetActive(true);
+				if (canvasRenderer != null) {
+					if (i >= usedRenderersCount)
+						canvasRenderer.gameObject.SetActive(true);
 
-				if (canvasRenderer.transform.parent != parent.transform)
-					canvasRenderer.transform.SetParent(parent.transform, false);
+					if (canvasRenderer.transform.parent != parent.transform && !isInRebuild)
+						canvasRenderer.transform.SetParent(parent.transform, false);
 
-				canvasRenderer.transform.SetSiblingIndex(targetSiblingIndex++);
-				RectTransform dstTransform = submeshGraphics[i].rectTransform;
-				dstTransform.localPosition = Vector3.zero;
-				dstTransform.pivot = rectTransform.pivot;
-				dstTransform.anchorMin = Vector2.zero;
-				dstTransform.anchorMax = Vector2.one;
-				dstTransform.sizeDelta = Vector2.zero;
+					canvasRenderer.transform.SetSiblingIndex(targetSiblingIndex++);
+				}
+
+				SkeletonSubmeshGraphic submeshGraphic = submeshGraphics[i];
+				if (submeshGraphic != null) {
+					RectTransform dstTransform = submeshGraphic.rectTransform;
+					dstTransform.localPosition = Vector3.zero;
+					dstTransform.pivot = rectTransform.pivot;
+					dstTransform.anchorMin = Vector2.zero;
+					dstTransform.anchorMax = Vector2.one;
+					dstTransform.sizeDelta = Vector2.zero;
+				}
 
 				SubmeshInstruction submeshInstructionItem = currentInstructions.submeshInstructions.Items[i];
 				if (submeshInstructionItem.forceSeparate) {
@@ -1007,6 +1028,7 @@ namespace Spine.Unity {
 				for (int i = canvasRenderers.Count - 1; i >= 0; --i) {
 					if (canvasRenderers[i] == null) {
 						canvasRenderers.RemoveAt(i);
+						submeshGraphics.RemoveAt(i);
 					}
 				}
 			}
@@ -1074,7 +1096,14 @@ namespace Spine.Unity {
 			for (int i = currentCount; i < targetCount; ++i) {
 				GameObject go = new GameObject(string.Format("{0}[{1}]", SeparatorPartGameObjectName, i), typeof(RectTransform));
 				go.transform.SetParent(this.transform, false);
-				go.transform.localPosition = Vector3.zero;
+
+				RectTransform dstTransform = go.transform.GetComponent<RectTransform>();
+				dstTransform.localPosition = Vector3.zero;
+				dstTransform.pivot = rectTransform.pivot;
+				dstTransform.anchorMin = Vector2.zero;
+				dstTransform.anchorMax = Vector2.one;
+				dstTransform.sizeDelta = Vector2.zero;
+
 				separatorParts.Add(go.transform);
 			}
 		}
