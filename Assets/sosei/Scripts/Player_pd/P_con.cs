@@ -6,49 +6,141 @@ using UnityEngine;
 
 public class P_con : MonoBehaviour
 {
-    [SerializeField]
-    private float P_moveSpeed= 0f;
+           
+    public SkeletonAnimation skeletonAnimation;
+    public AnimationReferenceAsset idle,run,jump,ken,yumi;
+    public string currentState;
+    public float speed;
+    public float movement;
+    private Rigidbody2D rigidbody;
+    public string currentAnimation;
+    public float JumpSpeed;
+    public string previousState;
 
-    [SerializeField]
-    private string taiki_ken_Animation = "";
-    [SerializeField]
-    private string taiki_yumi_Animation = "";
-    [SerializeField]
-    private string run_Animation = "";
-    [SerializeField]
-    private string dash_Animation = "";
 
-    private SkeletonAnimation skeletonAnimation = default;
-
-    private Spine.AnimationState spineAnimationState = default;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        skeletonAnimation = GetComponent<SkeletonAnimation>();
-
-        spineAnimationState = skeletonAnimation.AnimationState;
-       
+        rigidbody = GetComponent<Rigidbody2D>();
+       currentState = "Idle";
+        SetCharacoterState(currentState);
     }
+        
 
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        Move();
+      
+    }
+    public void SetAnimation(AnimationReferenceAsset animation,bool loop, float timeScale) 
+    {
+        if(animation.name.Equals(currentAnimation)) {
 
-        Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput) * P_moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
-
-
-
-
-       
+            return;
+        }
+        Spine.TrackEntry animationEntry = skeletonAnimation.state.SetAnimation(0, animation, loop);
+        animationEntry.TimeScale = timeScale;
+        animationEntry.Complete += AnimationEntry_Complete;
+        currentAnimation = animation.name;
 
     }
-    public void PlayAnimation(string name)
+
+    private void AnimationEntry_Complete(TrackEntry trackEntry) 
+    {
+       if(currentState.Equals("Jump")) 
+       {
+            SetCharacoterState(previousState);
+
+       }
+    }
+
+    public void SetCharacoterState(string state) 
+    {
+        
+
+        if(state.Equals("Run")) 
+        {
+            SetAnimation(run,true,1f);
+
+        }else if(state.Equals("Jump")) 
+        {
+            SetAnimation(jump, false, 1f);
+        }
+        else
+        {
+            SetAnimation(idle, true, 1f);
+        }
+
+        if(state.Equals("Ken")) 
+        {
+            SetAnimation(ken, false, 1f);
+
+        }
+        currentState = state;
+    }
+
+    public void Move()
+    {
+        movement = Input.GetAxis("Horizontal");
+
+        rigidbody.velocity = new Vector2(movement * speed,rigidbody.velocity.y);
+        if(movement != 0) 
+        {
+            if(!currentState.Equals("Jump")) 
+            {
+                SetCharacoterState("Run");
+            }
+            
+            if(movement >0) 
+            {
+                transform.localScale = new Vector2(1f,1f);
+
+            }
+            else 
+            {
+                transform.localScale = new Vector2(-1f, 1f);
+
+            }
+
+        }else 
+        {
+            if(!currentState.Equals("Jump")) 
+            {
+                SetCharacoterState("Idle");
+            }
+                
+        }
+
+        if(Input.GetButtonDown("Jump")) 
+        {
+            Jump();
+
+        }
+
+        if(Input.GetKey(KeyCode.K)) 
+        {
+            Ken();
+        }
+    }
+    public void Jump() 
+    {
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x,JumpSpeed);
+        if(!currentState.Equals("Jump")) 
+        {
+            previousState = currentState;
+        }
+        SetCharacoterState("Jump");
+    }
+    public void Ken() 
     {
 
-        spineAnimationState.SetAnimation(0, taiki_ken_Animation, true);
+        if(!currentState.Equals("Ken")) {
+            previousState = currentState;
+        }
+        SetCharacoterState("Ken");
     }
+
 }

@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
 
 	private Rigidbody2D m_Rigidbody2D;
 
-	public Animator animator;
+	//public Animator animator;
 
 
 	public bool canAttack = true;
@@ -44,7 +44,7 @@ public class Attack : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.X) && canAttack)//剣を振る　アニメーションを再生
 		{
 			canAttack = false;
-			animator.SetBool("IsAttacking", true);
+			//animator.SetBool("IsAttacking", true);
 			StartCoroutine(AttackCooldown());
 		}
 
