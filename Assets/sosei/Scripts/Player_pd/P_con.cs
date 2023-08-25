@@ -73,7 +73,7 @@ public class P_con : MonoBehaviour
         {
             SetAnimation(idle, true, 1f);
         }
-
+            
         if(state.Equals("Ken")) 
         {
             SetAnimation(ken, false, 1f);
