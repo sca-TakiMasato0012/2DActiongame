@@ -54,6 +54,7 @@ public class Attack : MonoBehaviour
 			canAttack2 = false;
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
+
 			
 
 			

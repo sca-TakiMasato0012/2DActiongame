@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	public CharacterController2D controller;
     //public Animator animator;
-
-    public float runSpeed = 40f;
+    [SerializeField]
+    public float runSpeed = 0f;
 
 	float horizontalMove = 0f;
 	bool jump = false;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     //bool dashAxis = false;
 
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset idle, running, jumping, dashing;
+    public AnimationReferenceAsset idle, running, jumping, dashing ,yumi;
     public string currentState;
     public string currentAnimation;
     public string previousState;
@@ -45,6 +45,11 @@ public class PlayerMovement : MonoBehaviour {
         if(state.Equals("Dashing")&&dash== true)
         {
             SetAnimation(dashing, true, 1f);
+        }
+
+        if (state.Equals("Jumping") && jump== true)
+        {
+            SetAnimation(jumping, true, 1f);
         }
     }
     
@@ -75,7 +80,7 @@ public class PlayerMovement : MonoBehaviour {
             
             jump = true;
             
-
+            
         }
 
 		if (Input.GetKeyDown(KeyCode.C))
@@ -85,6 +90,20 @@ public class PlayerMovement : MonoBehaviour {
 
         }
 
+        /*
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+
+            runSpeed =0;
+            SetAnimation(yumi, true, 1f);
+
+        }
+        else if(!Input.GetKeyDown(KeyCode.V))
+        {
+            runSpeed = 10;
+            SetAnimation(dashing, true, 1f);
+        }
+        */
         Move();
 
     }

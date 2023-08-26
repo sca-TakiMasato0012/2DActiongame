@@ -166,7 +166,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
 				StartCoroutine(DashCooldown());
-                //SetAnimation(dashing, false, 1f);
+                SetAnimation(dashing, false, 1f);
             }
 			// しゃがんでいる場合は、キャラクターが立ち上がることができるかどうかを確認してください
 			if(isDashing)
@@ -205,7 +205,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				// プレイヤーに垂直方向の力を加えます。
 				//animator.SetBool("IsJumping", true);
-				//SetAnimation(jumping,false,1f);
+				SetAnimation(jumping, false, 1f);
 				//animator.SetBool("JumpUp", true);
 				m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -218,9 +218,11 @@ public class CharacterController2D : MonoBehaviour
 				canDoubleJump = false;
 				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
-                //animator.SetBool("IsDoubleJumping", true);
-                
-            }
+				//animator.SetBool("IsDoubleJumping", true);
+
+				SetAnimation(jumping, false, 1f);
+
+			}
 			else if (m_IsWall && !m_Grounded)
 			{
 				if (!oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
@@ -250,10 +252,14 @@ public class CharacterController2D : MonoBehaviour
 
 				if (jump && isWallSliding)
 				{
-                    
-                    //animator.SetBool("IsJumping", true);
-                    //animator.SetBool("JumpUp", true); 
-                    m_Rigidbody2D.velocity = new Vector2(0f, 0f);
+
+					//animator.SetBool("IsJumping", true);
+					//animator.SetBool("JumpUp", true); 
+
+					SetAnimation(jumping,false, 1f);
+
+
+					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
 					limitVelOnWallJump = true;
