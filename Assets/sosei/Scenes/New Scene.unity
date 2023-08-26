@@ -868,6 +868,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.0095799
       objectReference: {fileID: 0}
+    - target: {fileID: 4986330650710208, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 70405055242815152, guid: 50936cccdb69523458c1b42052ebafff,
         type: 3}
       propertyPath: m_Offset.x
@@ -1006,7 +1010,7 @@ PrefabInstance:
         type: 3}
       propertyPath: throwableObject
       value: 
-      objectReference: {fileID: 792417148014771128, guid: 0f6f224f14d4aba4da9aae300b1c2001,
+      objectReference: {fileID: 3642909346512854364, guid: 0f6f224f14d4aba4da9aae300b1c2001,
         type: 3}
     - target: {fileID: 114435281327171648, guid: 50936cccdb69523458c1b42052ebafff,
         type: 3}

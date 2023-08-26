@@ -11,6 +11,8 @@ TagManager:
   - Goburin
   - ArrowCheck
   - ya
+  - stone
+  - Bat
   layers:
   - Default
   - TransparentFX

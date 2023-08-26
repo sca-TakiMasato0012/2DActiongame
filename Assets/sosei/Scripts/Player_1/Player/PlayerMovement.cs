@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
             SetAnimation(dashing, true, 1f);
         }
     }
-
+    
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)//アニメーションが再生さ入れているときはなにもしない
     {
         

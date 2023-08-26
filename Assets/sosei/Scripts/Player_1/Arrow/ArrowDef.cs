@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArrowDef : MonoBehaviour
 {
+    
     Rigidbody2D rb;
     private float Arrow_destroy = 5.0f;
 
@@ -22,7 +23,7 @@ public class ArrowDef : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Translate(Vector2.left * -Arrowspeed * Time.deltaTime);
+        transform.Translate(Vector2.left * -Arrowspeed * Time.deltaTime);
 
 
 
@@ -38,4 +39,5 @@ public class ArrowDef : MonoBehaviour
         }
         
     }
+    
 }

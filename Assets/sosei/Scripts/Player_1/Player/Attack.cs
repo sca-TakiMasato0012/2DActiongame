@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-
+	
 	
 	public Transform attackCheck;
 
@@ -50,9 +50,13 @@ public class Attack : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.V) && canAttack2)//矢を放つ
 		{
+			
 			canAttack2 = false;
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
+			
+
+			
 		}
 		
 		if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
@@ -85,7 +89,4 @@ public class Attack : MonoBehaviour
 
 		canAttack3 = true;
 	}
-
-	
-	
 }

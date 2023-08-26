@@ -31,8 +31,12 @@ public class CharacterController2D : MonoBehaviour
 	private float prevVelocityX = 0f;
 	private bool canCheck = false; //プレイヤーがウォールスライディングをしているかどうかを確認するため
 
+	[SerializeField]
+	public float Player_HP = 0;
+
+
 	public float life = 10f; //プレイヤーのライフ
-	public bool invincible = false; //プレイヤーが死ぬことができる場合
+	public bool invincible = true; //プレイヤーが死ぬことができる場合
 	private bool canMove = true; //プレイヤーが移動できる場合
 
 	//private Animator animator;
@@ -313,6 +317,8 @@ public class CharacterController2D : MonoBehaviour
 				StartCoroutine(Stun(0.25f));
 				StartCoroutine(MakeInvincible(1f));
 			}
+
+
 		}
 	}
 
@@ -374,4 +380,36 @@ public class CharacterController2D : MonoBehaviour
 		yield return new WaitForSeconds(1.1f);
 		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)//攻撃をくらったら
+   {
+		if(collision.gameObject.tag == "stone") {
+			//PlayAnimation(After_Animation);//ひるむアニメーションを再生
+
+			Player_HP = Player_HP - 1.0f;//くらったら１ダメージ
+		}
+
+		if(collision.gameObject.tag == "Goburin") {
+			//PlayAnimation(After_Animation);//ひるむアニメーションを再生
+
+			Player_HP = Player_HP - 1.0f;//矢をくらったら１ダメージ
+		}
+		if(collision.gameObject.tag == "Bat") {
+			//PlayAnimation(After_Animation);//ひるむアニメーションを再生
+
+			Player_HP = Player_HP - 1.0f;//矢をくらったら１ダメージ
+		}
+	}
+
+	void Update() 
+	{
+		if(Player_HP  <= 0)//もし倒されたら
+		{
+
+			
+			Destroy(gameObject);
+
+		}
+	}
 }
+

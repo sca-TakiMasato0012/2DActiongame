@@ -15,6 +15,8 @@ public class GoburinController : MonoBehaviour
     private bool isSearchArea = false;
 
     private float dis;
+    [SerializeField]
+    private float Goburin_HP = 0;
 
     //private bool isAttack = false;
 
@@ -88,10 +90,16 @@ public class GoburinController : MonoBehaviour
             PlayAnimation(Stop_Animation);
             isAnim = false;
         }
-        
+
+        if(Goburin_HP <= 0)//もし倒されたら
+        {
+
+            Destroy(gameObject);
+
+        }
     }
 
-    private void PlayAnimation(string name)
+        private void PlayAnimation(string name)
     {
 
         spineAnimationState.SetAnimation(0, name, true);
@@ -115,6 +123,17 @@ public class GoburinController : MonoBehaviour
 
             //PlayAnimation(After_Animation);//攻撃アニメーションを再生
             //isAnim = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)//攻撃をくらったら
+    {
+        if(collision.gameObject.tag == "ya") {
+            //PlayAnimation(After_Animation);//ひるむアニメーションを再生
+
+            Goburin_HP = Goburin_HP- 1.0f;//矢をくらったら１ダメージ
+
+            Debug.Log("yaがEffectにあたった!");
         }
     }
 }
