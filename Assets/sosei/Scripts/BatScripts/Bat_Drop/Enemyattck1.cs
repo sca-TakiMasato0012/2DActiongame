@@ -40,10 +40,13 @@ public class Enemyattck1: MonoBehaviour
         {
             //GetComponent<Rigidbody>().useGravity = true;
         }
+
+        
     }
     private void OnCollisionEnter2D(Collision2D collision) 
     {
-        if(collision.gameObject.tag == "Player") {
+        if(collision.gameObject.tag == "Player")
+        {
 
             Destroy(gameObject);
         }
