@@ -6,9 +6,10 @@ public class ArrowDef : MonoBehaviour
 {
     
     Rigidbody2D rb;
-    private float Arrow_destroy = 5.0f;
+    [SerializeField]
+    private float Arrow_destroy = 0f;
 
-    public Transform attackCheck;
+    public GameObject Player_1;
 
     [SerializeField]
     private float Arrowspeed = 0f;
@@ -23,10 +24,7 @@ public class ArrowDef : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * -Arrowspeed * Time.deltaTime);
-
-
-
+            transform.Translate(Vector2.left * -Arrowspeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

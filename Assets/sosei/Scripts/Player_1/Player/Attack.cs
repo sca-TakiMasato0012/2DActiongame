@@ -6,7 +6,7 @@ public class Attack : MonoBehaviour
 {
 	
 	
-	public Transform attackCheck;
+	
 
 	private Rigidbody2D m_Rigidbody2D;
 

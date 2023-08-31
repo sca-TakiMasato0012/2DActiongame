@@ -13,13 +13,13 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool dash = false;
-
+    bool arrow = false;
 
 
     //bool dashAxis = false;
 
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset idle, running, jumping, dashing ,yumi;
+    public AnimationReferenceAsset idle, running, jumping, dashing ,arrow_V;
     public string currentState;
     public string currentAnimation;
     public string previousState;
@@ -42,14 +42,19 @@ public class PlayerMovement : MonoBehaviour {
         {
             SetAnimation(running, true, 1f);
         }
-        if(state.Equals("Dashing")&&dash== true)
+        if(state.Equals("Dashing"))
         {
             SetAnimation(dashing, true, 1f);
         }
 
-        if (state.Equals("Jumping") && jump== true)
+        if (state.Equals("Jumping"))
         {
-            SetAnimation(jumping, true, 1f);
+            SetAnimation(jumping, false, 1f);
+        }
+        if(state.Equals("Arrow")) 
+        {
+            SetAnimation(arrow_V, true, 1f);
+
         }
     }
     
@@ -60,17 +65,23 @@ public class PlayerMovement : MonoBehaviour {
         {
             return;
         }
-        
-        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        Spine.TrackEntry animationEntry = skeletonAnimation.state.SetAnimation(0, animation, loop);
+        animationEntry.TimeScale = timeScale;
+        animationEntry.Complete += AnimationEntry_Complete;
         currentAnimation = animation.name;
     }
 
-    // Update is called once per frame
-    void Update () {
+    private void AnimationEntry_Complete(Spine.TrackEntry trackEntry) 
+    {
+        if(currentState.Equals("Jumping")) 
+        {
+            SetCharacoterState(previousState);
+        }
+    }
 
-		//horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        
-       
+    // Update is called once per frame
+    void Update () 
+    {
 
         Mathf.Abs(horizontalMove);
 
@@ -79,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
             
             jump = true;
-            
+            Jump();
             
         }
 
@@ -90,30 +101,24 @@ public class PlayerMovement : MonoBehaviour {
 
         }
 
-        /*
+        
         if (Input.GetKeyDown(KeyCode.V))
         {
 
-            runSpeed =0;
-            SetAnimation(yumi, true, 1f);
-
+            arrow = true;
         }
-        else if(!Input.GetKeyDown(KeyCode.V))
-        {
-            runSpeed = 10;
-            SetAnimation(dashing, true, 1f);
-        }
-        */
+        
         Move();
 
     }
+
     public void Move()
     {
-        movement = Input.GetAxis("Horizontal");
+            movement = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(movement * runSpeed,rb.velocity.y);
+            rb.velocity = new Vector2(movement * runSpeed,rb.velocity.y);
 
-    if(movement != 0)
+        if(movement != 0)
         {
             if(!currentState.Equals("Jumping"))
             {
@@ -128,24 +133,15 @@ public class PlayerMovement : MonoBehaviour {
             {
                 transform.localScale = new Vector2(-1f, 1f);
             }
-        }
-    else
+        } 
+        else 
         {
-            SetCharacoterState("Idle");
+            if(!currentState.Equals("Jumping")) 
+            {
+                SetCharacoterState("Idle");
+            }
         }
-        
-
     }
-
-	public void OnFall()
-	{
-		//animator.SetBool("IsJumping", true);
-	}
-
-	public void OnLanding()
-	{
-		//animator.SetBool("IsJumping", false);
-	}
 
 	void FixedUpdate ()
 	{
@@ -153,5 +149,16 @@ public class PlayerMovement : MonoBehaviour {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash);
 		jump = false;
 		dash = false;
+        arrow = false;
 	}
+
+    public void Jump() 
+    {
+        if(!currentState.Equals("Jumping"))
+        {
+            previousState = currentState;
+        }
+
+        SetCharacoterState("Jumping");
+    }
 }

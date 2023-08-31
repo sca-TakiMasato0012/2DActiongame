@@ -48,7 +48,7 @@ public class CharacterController2D : MonoBehaviour
 	private bool limitVelOnWallJump = false; //低いfpsで壁ジャンプ距離を制限する場合
 
     public SkeletonAnimation skeletonAnimation;
-    public AnimationReferenceAsset idle, running, jumping, dashing;
+    public AnimationReferenceAsset idle, running,jumping, dashing;
     public string currentState;
     public string currentAnimation;
     public string previousState;
@@ -67,33 +67,32 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		//animator = GetComponent<Animator>();
-
+		
 		if (OnFallEvent == null)
 			OnFallEvent = new UnityEvent();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
-    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)//アニメーションが再生さ入れているときはなにもしない
-    {
+	public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)//アニメーションが再生さ入れているときはなにもしない
+	  {
 
-        if (animation.name.Equals(currentAnimation))
-        {
-            return;
-        }
+		if(animation.name.Equals(currentAnimation)) {
+			return;
+		}
+		Spine.TrackEntry animationEntry = skeletonAnimation.state.SetAnimation(0, animation, loop);
+		animationEntry.TimeScale = timeScale;
+		currentAnimation = animation.name;
+	}
 
-        skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
-        currentAnimation = animation.name;
-    }
 
-    private void FixedUpdate()
+	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
-		// グラウンドチェック位置へのサークルキャストがグラウンドとして指定されたものに当たった場合、プレーヤーはグラウンドになります。
-		// これは代わりにレイヤーを使用して実行できますが、サンプル アセットはプロジェクト設定を上書きしません。
+		
+		
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
@@ -104,56 +103,21 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 					if (!m_IsWall && !isDashing) 
 						particleJumpDown.Play();
-					canDoubleJump = true;
+					
+				canDoubleJump = true;
 					if (m_Rigidbody2D.velocity.y < 0f)
 						limitVelOnWallJump = false;
-				}
+			}
 		}
 
 		m_IsWall = false;
 
 		if (!m_Grounded)
 		{
-			OnFallEvent.Invoke();
-			Collider2D[] collidersWall = Physics2D.OverlapCircleAll(m_WallCheck.position, k_GroundedRadius, m_WhatIsGround);
-			for (int i = 0; i < collidersWall.Length; i++)
-			{
-				if (collidersWall[i].gameObject != null)
-				{
-					isDashing = false;
-					m_IsWall = true;
-				}
-			}
-			prevVelocityX = m_Rigidbody2D.velocity.x;
-            //SetAnimation(jumping, false, 1f);
+			SetAnimation(jumping,false,1f);
+			
         }
 
-		if (limitVelOnWallJump)
-		{
-			if (m_Rigidbody2D.velocity.y < -0.5f)
-				limitVelOnWallJump = false;
-            
-            jumpWallDistX = (jumpWallStartX - transform.position.x) * transform.localScale.x;
-			if (jumpWallDistX < -0.5f && jumpWallDistX > -1f) 
-			{
-				canMove = true;
-			}
-			else if (jumpWallDistX < -1f && jumpWallDistX >= -2f) 
-			{
-				canMove = true;
-				m_Rigidbody2D.velocity = new Vector2(10f * transform.localScale.x, m_Rigidbody2D.velocity.y);
-			}
-			else if (jumpWallDistX < -2f) 
-			{
-				limitVelOnWallJump = false;
-				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-			}
-			else if (jumpWallDistX > 0) 
-			{
-				limitVelOnWallJump = false;
-				m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-			}
-		}
 	}
 
 
@@ -161,19 +125,19 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (canMove) 
 		{
-            
-            if (dash && canDash && !isWallSliding)
+			
+			if (dash && canDash)
 			{
 				m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
 				StartCoroutine(DashCooldown());
-                SetAnimation(dashing, false, 1f);
+                SetAnimation(dashing, false, 1f);//ダッシュする
             }
 			// しゃがんでいる場合は、キャラクターが立ち上がることができるかどうかを確認してください
 			if(isDashing)
 			{
 				m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * -m_DashForce, 0);
-                
-            }
+				SetAnimation(dashing, false, 1f);//ダッシュする
+			}
 			//地上にある場合、または airControl がオンになっている場合にのみプレーヤーを制御します
 
 			else if (m_Grounded || m_AirControl)
@@ -188,13 +152,13 @@ public class CharacterController2D : MonoBehaviour
 				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
 				// 入力によってプレーヤーが右に移動し、プレーヤーが左を向いている場合...
-				if(move > 0 && !m_FacingRight && !isWallSliding)
+				if(move > 0 && !m_FacingRight)
 				{
 					// ...プレーヤーを裏返します。
 					Flip();
 				}
 				// それ以外の場合、入力がプレーヤーを左に動かし、プレーヤーが右を向いている場合...
-				else if (move < 0 && m_FacingRight && !isWallSliding)
+				else if (move < 0 && m_FacingRight)
 				{
 					// ...プレーヤーを裏返します。
 					Flip();
@@ -203,24 +167,19 @@ public class CharacterController2D : MonoBehaviour
 			// プレイヤーがジャンプしたら...
 			if(m_Grounded && jump)
 			{
-				// プレイヤーに垂直方向の力を加えます。
-				//animator.SetBool("IsJumping", true);
-				SetAnimation(jumping, false, 1f);
-				//animator.SetBool("JumpUp", true);
+				SetAnimation(jumping,false,1f);
 				m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 				canDoubleJump = true;
 				particleJumpDown.Play();
 				particleJumpUp.Play();
 			}
-			else if (!m_Grounded && jump && canDoubleJump && !isWallSliding)
+			else if (!m_Grounded && jump && canDoubleJump)
 			{
+				SetAnimation(jumping,false,1f);
 				canDoubleJump = false;
 				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
-				//animator.SetBool("IsDoubleJumping", true);
-
-				SetAnimation(jumping, false, 1f);
 
 			}
 			else if (m_IsWall && !m_Grounded)
@@ -232,9 +191,7 @@ public class CharacterController2D : MonoBehaviour
 					Flip();
 					StartCoroutine(WaitToCheck(0.1f));
 					canDoubleJump = true;
-                    //animator.SetBool("IsWallSliding", true);
-                    
-                }
+				}
 				isDashing = false;
 
 				if (isWallSliding)
@@ -252,20 +209,12 @@ public class CharacterController2D : MonoBehaviour
 
 				if (jump && isWallSliding)
 				{
-
-					//animator.SetBool("IsJumping", true);
-					//animator.SetBool("JumpUp", true); 
-
-					SetAnimation(jumping,false, 1f);
-
-
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
 					limitVelOnWallJump = true;
 					canDoubleJump = true;
 					isWallSliding = false;
-					//animator.SetBool("IsWallSliding", false);
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					canMove = false;
@@ -273,7 +222,8 @@ public class CharacterController2D : MonoBehaviour
 				else if (dash && canDash)
 				{
 					isWallSliding = false;
-					//animator.SetBool("IsWallSliding", false);
+					
+					
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					canDoubleJump = true;
@@ -283,7 +233,8 @@ public class CharacterController2D : MonoBehaviour
 			else if (isWallSliding && !m_IsWall && canCheck) 
 			{
 				isWallSliding = false;
-				//animator.SetBool("IsWallSliding", false);
+				
+				
 				oldWallSlidding = false;
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 				canDoubleJump = true;
@@ -304,7 +255,7 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
-
+	
 	public void ApplyDamage(float damage, Vector3 position) 
 	{
 		if (!invincible)
@@ -330,7 +281,8 @@ public class CharacterController2D : MonoBehaviour
 
 	IEnumerator DashCooldown()
 	{
-		//animator.SetBool("IsDashing", true);
+		
+		SetAnimation(running, false, 1f);
 		isDashing = true;
 		canDash = false;
 		yield return new WaitForSeconds(0.1f);
@@ -341,6 +293,7 @@ public class CharacterController2D : MonoBehaviour
 
 	IEnumerator Stun(float time) 
 	{
+		
 		canMove = false;
 		yield return new WaitForSeconds(time);
 		canMove = true;
@@ -370,14 +323,14 @@ public class CharacterController2D : MonoBehaviour
 		yield return new WaitForSeconds(0.1f);
 		canDoubleJump = true;
 		isWallSliding = false;
-		//animator.SetBool("IsWallSliding", false);
+		
 		oldWallSlidding = false;
 		m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 	}
 
 	IEnumerator WaitToDead()
 	{
-		//animator.SetBool("IsDead", true);
+		
 		canMove = false;
 		invincible = true;
 		GetComponent<Attack>().enabled = false;
@@ -404,6 +357,8 @@ public class CharacterController2D : MonoBehaviour
 			//PlayAnimation(After_Animation);//ひるむアニメーションを再生
 
 			Player_HP = Player_HP - 1.0f;//矢をくらったら１ダメージ
+
+	
 		}
 	}
 
