@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             SetAnimation(dashing, true, 1f);
         }
-
         if (state.Equals("Jumping"))
         {
             SetAnimation(jumping, false, 1f);
@@ -56,6 +55,7 @@ public class PlayerMovement : MonoBehaviour {
             SetAnimation(arrow_V, true, 1f);
 
         }
+        currentState = state;
     }
     
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)//アニメーションが再生さ入れているときはなにもしない
@@ -83,14 +83,14 @@ public class PlayerMovement : MonoBehaviour {
     void Update () 
     {
 
-        Mathf.Abs(horizontalMove);
+        //Mathf.Abs(horizontalMove);
 
 		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 
-            //jump = true;
-            SetAnimation(jumping, false, 1f);
+            jump = true;
+            
 
         }
 
@@ -162,7 +162,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             previousState = currentState;
         }
-
-        SetCharacoterState("Jumping");
+        
     }
 }
