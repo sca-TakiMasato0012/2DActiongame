@@ -45,7 +45,6 @@ public class CharacterController2D : MonoBehaviour
 
 	private float jumpWallStartX = 0;
 	private float jumpWallDistX = 0; //プレイヤーと壁との距離
-	private bool limitVelOnWallJump = false; //低いfpsで壁ジャンプ距離を制限する場合
 
     public SkeletonAnimation skeletonAnimation;
     public AnimationReferenceAsset idle, running,jumping, dashing;
@@ -96,17 +95,23 @@ public class CharacterController2D : MonoBehaviour
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
-			if (colliders[i].gameObject != gameObject)
+			if (colliders[i].gameObject != gameObject) 
+			{
 				m_Grounded = true;
-				if (!wasGrounded )
+
+				if(!wasGrounded) 
 				{
 					OnLandEvent.Invoke();
-					if (!m_IsWall && !isDashing) 
+
+					if(!m_IsWall && !isDashing) 
+					{
 						particleJumpDown.Play();
-					
-				canDoubleJump = true;
-					if (m_Rigidbody2D.velocity.y < 0f)
-						limitVelOnWallJump = false;
+					}
+
+					canDoubleJump = true;
+
+				}
+
 			}
 		}
 
@@ -114,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
 
 		if (!m_Grounded)
 		{
-			SetAnimation(jumping,false,1f);
+			//SetAnimation(jumping,false,1f);
 			
         }
 
@@ -130,19 +135,19 @@ public class CharacterController2D : MonoBehaviour
 			{
 				m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_DashForce, 0f));
 				StartCoroutine(DashCooldown());
-                SetAnimation(dashing, false, 1f);//ダッシュする
-            }
+				SetCharacoterState("Dashing");//ダッシュする
+			}
 			// しゃがんでいる場合は、キャラクターが立ち上がることができるかどうかを確認してください
 			if(isDashing)
 			{
 				m_Rigidbody2D.velocity = new Vector2(transform.localScale.x * -m_DashForce, 0);
-				SetAnimation(dashing, false, 1f);//ダッシュする
+				SetCharacoterState("Dashing");//ダッシュする
 			}
 			//地上にある場合、または airControl がオンになっている場合にのみプレーヤーを制御します
 
 			else if (m_Grounded || m_AirControl)
 			{
-
+				
 				if (m_Rigidbody2D.velocity.y < -limitFallSpeed)
 					m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -limitFallSpeed);
 
@@ -167,7 +172,7 @@ public class CharacterController2D : MonoBehaviour
 			// プレイヤーがジャンプしたら...
 			if(m_Grounded && jump)
 			{
-				SetAnimation(jumping,false,1f);
+				SetCharacoterState("Jumping");
 				m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 				canDoubleJump = true;
@@ -176,7 +181,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 			else if (!m_Grounded && jump && canDoubleJump)
 			{
-				SetAnimation(jumping,false,1f);
+				SetCharacoterState("Jumping");
 				canDoubleJump = false;
 				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
@@ -184,6 +189,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 			else if (m_IsWall && !m_Grounded)
 			{
+				
 				if (!oldWallSlidding && m_Rigidbody2D.velocity.y < 0 || isDashing)
 				{
 					isWallSliding = true;
@@ -194,43 +200,30 @@ public class CharacterController2D : MonoBehaviour
 				}
 				isDashing = false;
 
-				if (isWallSliding)
+				if (jump)
 				{
-					if (move * transform.localScale.x > 0.1f)
-					{
-						StartCoroutine(WaitToEndSliding());
-					}
-					else 
-					{
-						oldWallSlidding = true;
-						m_Rigidbody2D.velocity = new Vector2(-transform.localScale.x * 2, -5);
-					}
-				}
-
-				if (jump && isWallSliding)
-				{
+					SetCharacoterState("Jumping");
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
-					limitVelOnWallJump = true;
 					canDoubleJump = true;
 					isWallSliding = false;
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
-					canMove = false;
+					
 				}
 				else if (dash && canDash)
 				{
 					isWallSliding = false;
-					
-					
+
+
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					canDoubleJump = true;
 					StartCoroutine(DashCooldown());
 				}
 			}
-			else if (isWallSliding && !m_IsWall && canCheck) 
+			else if (!m_IsWall && canCheck) 
 			{
 				isWallSliding = false;
 				
@@ -243,7 +236,18 @@ public class CharacterController2D : MonoBehaviour
 		
         
     }
+	public void SetCharacoterState(string state) 
+	{
+		if(state.Equals("Jumping")) 
+		{
+			SetAnimation(jumping, false, 1f);
+		}
 
+		if(state.Equals("Dashing")) 
+		{
+			SetAnimation(dashing, false, 1f);
+		}
+	}
 
 	private void Flip()
 	{
@@ -346,6 +350,8 @@ public class CharacterController2D : MonoBehaviour
 			//PlayAnimation(After_Animation);//ひるむアニメーションを再生
 
 			Player_HP = Player_HP - 1.0f;//くらったら１ダメージ
+
+			
 		}
 
 		if(collision.gameObject.tag == "Goburin") {
@@ -371,6 +377,8 @@ public class CharacterController2D : MonoBehaviour
 			Destroy(gameObject);
 
 		}
+
+		
 	}
 }
 

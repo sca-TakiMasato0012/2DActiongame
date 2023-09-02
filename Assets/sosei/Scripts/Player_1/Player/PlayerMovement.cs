@@ -90,8 +90,8 @@ public class PlayerMovement : MonoBehaviour {
 		{
             
             jump = true;
-            Jump();
-            
+           
+           
         }
 
 		if (Input.GetKeyDown(KeyCode.C))
@@ -109,6 +109,11 @@ public class PlayerMovement : MonoBehaviour {
         }
         
         Move();
+
+        if(Input.GetKeyDown(KeyCode.X)) {
+
+            
+        }
 
     }
 
@@ -149,7 +154,6 @@ public class PlayerMovement : MonoBehaviour {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash);
 		jump = false;
 		dash = false;
-        arrow = false;
 	}
 
     public void Jump() 

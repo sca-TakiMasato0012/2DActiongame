@@ -1,0 +1,296 @@
+{
+"skeleton": { "hash": "tK/KhzKQhXE", "spine": "4.1.20", "images": "../images/", "audio": "D:/ゲーム制作土/min/weapon/.." },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "弓", "bone": "root" },
+	{ "name": "Rてくび", "bone": "root" },
+	{ "name": "Rひじ", "bone": "root" },
+	{ "name": "Rhiza", "bone": "root" },
+	{ "name": "Lhiza のコピー", "bone": "root" },
+	{ "name": "Lひじ", "bone": "root" },
+	{ "name": "Lぜんわん2", "bone": "root" },
+	{ "name": "Rぜんわん１ のコピー", "bone": "root" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Lhiza のコピー": {
+				"Lhiza のコピー": { "x": -253, "y": 518, "width": 158, "height": 158 }
+			},
+			"Lひじ": {
+				"Lひじ": { "x": -415, "y": 1478, "width": 158, "height": 158 }
+			},
+			"Rhiza": {
+				"Rhiza": { "x": 212, "y": 543, "width": 158, "height": 158 }
+			},
+			"Rてくび": {
+				"Rてくび": { "x": 379.5, "y": 1141.5, "width": 89, "height": 89 }
+			},
+			"Rひじ": {
+				"Rひじ": { "x": 304, "y": 1488, "width": 158, "height": 158 }
+			}
+		}
+	}
+],
+"animations": {
+	"kihon_anime/die/die_dmgstap_ken": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_dmgstap_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_dmgstap_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_dmgstap_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_ken": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1333 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1333 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1333 }
+				]
+			}
+		}
+	},
+	"kihon_anime/die/die_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.1333 }
+				]
+			}
+		}
+	},
+	"kihon_anime/dmg/dmg_ken": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/dmg/dmg_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/dmg/dmg_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/dmg/dmg_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/hokou/hokou_ken": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.3333 }
+				]
+			}
+		}
+	},
+	"kihon_anime/hokou/hokou_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/hokou/hokou_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/hokou/hokou_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/jump/jump_ken": {
+		"bones": {
+			"root": {
+				"translate": [
+					{}
+				]
+			}
+		}
+	},
+	"kihon_anime/jump/jump_ken2": {
+		"bones": {
+			"root": {
+				"translate": [
+					{ "time": 1.1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/jump/jump_yumi": {
+		"bones": {
+			"root": {
+				"translate": [
+					{ "time": 1.1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/jump/jump_yumi2": {
+		"bones": {
+			"root": {
+				"translate": [
+					{ "time": 1.1 }
+				]
+			}
+		}
+	},
+	"kihon_anime/kaihi/kaihi_ken": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/kaihi/kaihi_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/kaihi/kaihi_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/kaihi/kaihi_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 0.6667 }
+				]
+			}
+		}
+	},
+	"kihon_anime/taiki/taiki_ken": {
+		"bones": {
+			"root": {
+				"rotate": [
+					{ "value": 3.6 },
+					{ "time": 1 }
+				],
+				"scale": [
+					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"kihon_anime/taiki/taiki_ken2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"kihon_anime/taiki/taiki_yumi": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"kihon_anime/taiki/taiki_yumi2": {
+		"bones": {
+			"root": {
+				"scale": [
+					{ "time": 2 }
+				]
+			}
+		}
+	}
+}
+}

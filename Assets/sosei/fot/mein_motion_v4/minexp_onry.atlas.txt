@@ -1,0 +1,14 @@
+minexp_onry.png
+size:253,253
+filter:Linear,Linear
+pma:true
+Lhiza のコピー
+bounds:2,93,158,158
+Lひじ
+bounds:2,93,158,158
+Rhiza
+bounds:2,93,158,158
+Rひじ
+bounds:2,93,158,158
+Rてくび
+bounds:2,2,89,89
