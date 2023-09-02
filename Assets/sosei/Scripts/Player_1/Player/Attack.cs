@@ -5,8 +5,11 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
 	
-	
-	
+
+	private float Key_B;
+	private float Key_M;
+	private float Arrow_destroy = 0f;
+	private float Arrowspeed = 0f;
 
 	private Rigidbody2D m_Rigidbody2D;
 
@@ -27,7 +30,9 @@ public class Attack : MonoBehaviour
 	[SerializeField]
 	private float yaCooldown2 = 0;//弓のクールタイム
 
-	private void Awake()
+
+	
+private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
@@ -55,9 +60,7 @@ public class Attack : MonoBehaviour
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
 
-			
-
-			
+			transform.Translate(Vector2.left * Arrowspeed * Time.deltaTime);
 		}
 		
 		if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
@@ -65,6 +68,16 @@ public class Attack : MonoBehaviour
 			canAttack3 = false;
 			Instantiate(ya2,transform.position, transform.rotation);
 			StartCoroutine(AttackCooldown3());
+		}
+
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			Arrowspeed = 10;
+		}
+
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			Arrowspeed = -10;
 		}
 	}
 
@@ -89,5 +102,17 @@ public class Attack : MonoBehaviour
 		yield return new WaitForSeconds(yaCooldown2);//矢のクールタイム
 
 		canAttack3 = true;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Enemy")
+		{
+
+
+			Destroy(gameObject);
+			Debug.Log("bat_ReleaseとEffectにあたった");
+		}
+
 	}
 }

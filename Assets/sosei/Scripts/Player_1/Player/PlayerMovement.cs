@@ -88,10 +88,10 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            
-            jump = true;
-           
-           
+
+            //jump = true;
+            SetAnimation(jumping, false, 1f);
+
         }
 
 		if (Input.GetKeyDown(KeyCode.C))

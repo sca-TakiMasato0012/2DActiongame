@@ -21,7 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 velocity = Vector3.zero;
 	private float limitFallSpeed = 25f; // 落下速度を制限する
 
-	public bool canDoubleJump = true; //プレイヤーが二段ジャンプできる場合
+	//public bool canDoubleJump = false; //プレイヤーが二段ジャンプできる場合
 	[SerializeField] private float m_DashForce = 25f;
 	private bool canDash = true;
 	private bool isDashing = false; //プレイヤーがダッシュしている場合
@@ -108,7 +108,7 @@ public class CharacterController2D : MonoBehaviour
 						particleJumpDown.Play();
 					}
 
-					canDoubleJump = true;
+					//canDoubleJump = true;
 
 				}
 
@@ -124,8 +124,6 @@ public class CharacterController2D : MonoBehaviour
         }
 
 	}
-
-
 	public void Move(float move, bool jump, bool dash)
 	{
 		if (canMove) 
@@ -175,18 +173,11 @@ public class CharacterController2D : MonoBehaviour
 				SetCharacoterState("Jumping");
 				m_Grounded = false;
 				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-				canDoubleJump = true;
+				//canDoubleJump = true;
 				particleJumpDown.Play();
 				particleJumpUp.Play();
 			}
-			else if (!m_Grounded && jump && canDoubleJump)
-			{
-				SetCharacoterState("Jumping");
-				canDoubleJump = false;
-				m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-				m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce / 1.2f));
-
-			}
+			
 			else if (m_IsWall && !m_Grounded)
 			{
 				
@@ -196,7 +187,7 @@ public class CharacterController2D : MonoBehaviour
 					m_WallCheck.localPosition = new Vector3(-m_WallCheck.localPosition.x, m_WallCheck.localPosition.y, 0);
 					Flip();
 					StartCoroutine(WaitToCheck(0.1f));
-					canDoubleJump = true;
+					//canDoubleJump = true;
 				}
 				isDashing = false;
 
@@ -206,7 +197,7 @@ public class CharacterController2D : MonoBehaviour
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
-					canDoubleJump = true;
+					//canDoubleJump = true;
 					isWallSliding = false;
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
@@ -216,21 +207,21 @@ public class CharacterController2D : MonoBehaviour
 				{
 					isWallSliding = false;
 
-
+					
 					oldWallSlidding = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
-					canDoubleJump = true;
+					//canDoubleJump = true;
 					StartCoroutine(DashCooldown());
 				}
 			}
 			else if (!m_IsWall && canCheck) 
 			{
 				isWallSliding = false;
-				
+
 				
 				oldWallSlidding = false;
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
-				canDoubleJump = true;
+				//canDoubleJump = true;
 			}
         }
 		
@@ -310,6 +301,7 @@ public class CharacterController2D : MonoBehaviour
 	}
 	IEnumerator WaitToMove(float time)
 	{
+		SetCharacoterState("Jumping");
 		canMove = false;
 		yield return new WaitForSeconds(time);
 		canMove = true;
@@ -325,7 +317,7 @@ public class CharacterController2D : MonoBehaviour
 	IEnumerator WaitToEndSliding()
 	{
 		yield return new WaitForSeconds(0.1f);
-		canDoubleJump = true;
+		//canDoubleJump = true;
 		isWallSliding = false;
 		
 		oldWallSlidding = false;
@@ -372,13 +364,8 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if(Player_HP  <= 0)//もし倒されたら
 		{
-
-			
 			Destroy(gameObject);
-
 		}
-
-		
 	}
 }
 
