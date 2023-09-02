@@ -13,6 +13,7 @@ TagManager:
   - ya
   - stone
   - Bat
+  - DeathZone
   layers:
   - Default
   - TransparentFX
