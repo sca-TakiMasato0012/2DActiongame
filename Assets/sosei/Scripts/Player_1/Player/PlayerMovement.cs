@@ -97,24 +97,20 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			dash = true;
-            
-
         }
 
         
         if (Input.GetKeyDown(KeyCode.V))
         {
-
             arrow = true;
         }
         
         Move();
 
-        if(Input.GetKeyDown(KeyCode.X)) {
+        if(Input.GetKeyDown(KeyCode.X)) 
+        {
 
-            
         }
-
     }
 
     public void Move()
