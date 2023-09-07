@@ -167,6 +167,7 @@ public class CharacterController2D : MonoBehaviour
 				//canDoubleJump = true;
 				particleJumpDown.Play();
 				particleJumpUp.Play();
+				isDashing = false;
 			}
 			
 			else if (m_IsWall && !m_Grounded)
@@ -186,13 +187,14 @@ public class CharacterController2D : MonoBehaviour
 
 				if (jump)
 				{
-					Jump();
+					//Jump();
 					m_Rigidbody2D.velocity = new Vector2(0f, 0f);
 					m_Rigidbody2D.AddForce(new Vector2(transform.localScale.x * m_JumpForce *1.2f, m_JumpForce));
 					jumpWallStartX = transform.position.x;
 					//canDoubleJump = true;
 					isWallSliding = false;
 					oldWallSlidding = false;
+					isDashing = false;
 					m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 					
 				}
@@ -211,7 +213,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				isWallSliding = false;
 
-				
+				isDashing = false;
 				oldWallSlidding = false;
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
 				//canDoubleJump = true;
@@ -359,15 +361,16 @@ public class CharacterController2D : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
+
 	}
 
-	private void Jump()
+	/*private void Jump()
     {
 		if(!currentState.Equals("Idle")&&!currentState.Equals("Jumping"))
         {
 			SetAnimation(jumping, false, 1f);
 		}
 		
-	}
+	}*/
 }
 

@@ -88,18 +88,15 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-
             jump = true;
             
-
         }
 
 		if (Input.GetKeyDown(KeyCode.C))
 		{
 			dash = true;
+            
         }
-
-        
         if (Input.GetKeyDown(KeyCode.V))
         {
             arrow = true;
@@ -111,6 +108,7 @@ public class PlayerMovement : MonoBehaviour {
         {
 
         }
+    
     }
 
     public void Move()
@@ -119,9 +117,9 @@ public class PlayerMovement : MonoBehaviour {
 
             rb.velocity = new Vector2(movement * runSpeed,rb.velocity.y);
 
-        if(movement != 0)
+        if(movement != 0) //‚¤‚²‚¢‚Ä‚¢‚é
         {
-            if(!currentState.Equals("Jumping"))
+            if(!currentState.Equals("Jumping")&& !currentState.Equals("Running"))//ƒWƒƒƒ“ƒv‚Å‚È‚¯‚ê‚Î
             {
                 SetCharacoterState("Running");
             }
@@ -151,13 +149,4 @@ public class PlayerMovement : MonoBehaviour {
 		jump = false;
 		dash = false;
 	}
-
-    public void Jump() 
-    {
-        if(!currentState.Equals("Jumping"))
-        {
-            previousState = currentState;
-        }
-        
-    }
 }
