@@ -15,7 +15,13 @@ public class PlayerMovement : MonoBehaviour {
 	bool dash = false;
     bool arrow = false;
 
+    private bool facingRight = true; // プレイヤーが右を向いているかどうか
 
+    // 他のコードとの連携のために向きを取得するプロパティを追加
+    public bool FacingRight 
+    {
+        get { return facingRight; }
+    }
     //bool dashAxis = false;
 
     public SkeletonAnimation skeletonAnimation;
@@ -126,11 +132,13 @@ public class PlayerMovement : MonoBehaviour {
             if (movement > 0)
             {
                 transform.localScale = new Vector2(1f, 1f);
+                facingRight = true;
 
             }
             else
             {
                 transform.localScale = new Vector2(-1f, 1f);
+                facingRight = false;
             }
         } 
         else 

@@ -8,9 +8,10 @@ public class Arrow_Bejye : MonoBehaviour
     [SerializeField]
     private float Arrow_speed;
     private float Arrow_destroy = 5.0f;
-    
-    
-    
+
+    public GameObject objectToGenerate; // 生成するオブジェクト
+    public Transform spawnPoint; // 生成する位置
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,17 @@ public class Arrow_Bejye : MonoBehaviour
 
             Destroy(gameObject);
             Debug.Log("あたった！");
+
+            GenerateObject();
         }
         
+    }
+    void GenerateObject()
+    {
+        // オブジェクトを生成
+        GameObject newObject = Instantiate(objectToGenerate, spawnPoint.position, spawnPoint.rotation);
+
+        // 生成したオブジェクトに対する追加の処理を行うことができます
+        // 例えば、生成後に新しいオブジェクトに力を加えたり、スクリプトをアタッチしたりできます
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2772979715247183200}
   - component: {fileID: 2772979715247183201}
   - component: {fileID: 2772979715247183214}
+  - component: {fileID: 5223988492453285901}
   m_Layer: 0
   m_Name: dragon
   m_TagString: Untagged
@@ -120,3 +121,16 @@ MonoBehaviour:
   _animationName: 1st/taiki_v1
   loop: 1
   timeScale: 1
+--- !u!114 &5223988492453285901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772979715247183215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1495ec9ba9719df4abe4591f1170a96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dragon_Hp: 0
