@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72984cd934647114e8cc7fdf6274430d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  launchForce: 10
   Arrow_destroy: 0.6
-  Player_1: {fileID: 6541897601575878490, guid: 03bf734c2f254a34390b6f58120e0836,
-    type: 3}
+  Player_1: {fileID: 696889933162739624, guid: fd0a2375093b2714d8dae309c199b0f6, type: 3}
   Arrowspeed: 30
 --- !u!50 &2737328875435792487
 Rigidbody2D:

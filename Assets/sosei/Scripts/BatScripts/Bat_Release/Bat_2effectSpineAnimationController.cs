@@ -17,6 +17,10 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
     [SerializeField]
     private string After_Animation = "";//ひるむアニメーション
 
+    bool isAnim = false;
+
+    private Transform player; // プレイヤーキャラクターのTransformコンポーネント
+    private bool facingLeft = false; // キャラクターが右を向いているかどうか
 
     private SkeletonAnimation skeletonAnimation = default;//飛来するアニメーション
 
@@ -26,17 +30,32 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
         skeletonAnimation = GetComponent<SkeletonAnimation>();
 
         spineAnimationState = skeletonAnimation.AnimationState;
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    bool isAnim = false;
+    
     
     // Update is called once per frame
     void Update() {
        
 
-        Vector2 player = target.transform.position;
+        Vector2 player1 = target.transform.position;
 
-        float dis = Vector2.Distance(player, this.transform.position);//playerを見つけたら
+        if (player != null)
+        {
+            if (transform.position.x < player.position.x && !facingLeft)
+            {
+                // プレイヤーが右にいる場合、キャラクターを右に向ける
+                FlipAndRotate(0);
+            }
+            else if (transform.position.x > player.position.x && facingLeft)
+            {
+                // プレイヤーが左にいる場合、キャラクターを左に向ける
+                FlipAndRotate(0);
+            }
+        }
+        float dis = Vector2.Distance(player1, this.transform.position);//playerを見つけたら
         if(dis < 8 && !isAnim) 
         {
             PlayAnimation(Start_Animation);//Effect2のアニメーションを再生
@@ -71,5 +90,20 @@ public class Bat_2effectSpineAnimationController : MonoBehaviour
     }
 
 
-    
+    private void FlipAndRotate(float rotationAngle)
+    {
+        // キャラクターのスケールを反転させて、向きを変更する
+        facingLeft = !facingLeft;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        // キャラクターを指定したY軸の回転角度だけ回転させる
+        Vector3 eulerAngles = transform.eulerAngles;
+        eulerAngles.y -= 180;
+        transform.eulerAngles= eulerAngles;
+        // キャラクターを指定したZ軸の回転角度だけ回転させる
+        eulerAngles.z *= -1;
+        transform.eulerAngles = eulerAngles;
+    }
 }

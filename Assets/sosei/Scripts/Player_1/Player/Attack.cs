@@ -59,8 +59,8 @@ private void Awake()
 			canAttack2 = false;
 			Instantiate(ya,transform.position,transform.rotation);
 			StartCoroutine(AttackCooldown2());
-
-			transform.Translate(Vector2.left * Arrowspeed * Time.deltaTime);
+			Arrow();
+			
 		}
 		
 		if (Input.GetKeyDown(KeyCode.F) && canAttack3)//矢を放つ
@@ -115,4 +115,9 @@ private void Awake()
 		}
 
 	}
+	private void Arrow()
+	{
+
+        transform.Translate(Vector2.left * Arrowspeed * Time.deltaTime);
+    }
 }
