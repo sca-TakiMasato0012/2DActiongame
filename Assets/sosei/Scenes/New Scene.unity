@@ -678,8 +678,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.135315, y: 0.46386462}
-  m_Size: {x: 6.416139, y: 1.3516918}
+  m_Offset: {x: -0.9392166, y: 1.1835446}
+  m_Size: {x: 4.0239744, y: 2.7910573}
   m_Direction: 1
 --- !u!50 &1336602390
 Rigidbody2D:
@@ -1010,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 2772979715247183214, guid: a98a620cc1b864144abdaa021fe22f66,
         type: 3}
       propertyPath: _animationName
-      value: 1st/buresu_v1
+      value: 1st/taiki_v1
       objectReference: {fileID: 0}
     - target: {fileID: 2772979715247183215, guid: a98a620cc1b864144abdaa021fe22f66,
         type: 3}
@@ -1085,12 +1085,12 @@ PrefabInstance:
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.24
+      value: -7.33
       objectReference: {fileID: 0}
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.85
+      value: -4.64
       objectReference: {fileID: 0}
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
