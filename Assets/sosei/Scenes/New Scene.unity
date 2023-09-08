@@ -955,12 +955,12 @@ PrefabInstance:
     - target: {fileID: 2772979715247183203, guid: a98a620cc1b864144abdaa021fe22f66,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.1
+      value: 7.71
       objectReference: {fileID: 0}
     - target: {fileID: 2772979715247183203, guid: a98a620cc1b864144abdaa021fe22f66,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.07
+      value: -4.44
       objectReference: {fileID: 0}
     - target: {fileID: 2772979715247183203, guid: a98a620cc1b864144abdaa021fe22f66,
         type: 3}
@@ -1062,6 +1062,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 592991016330505220, guid: fd0a2375093b2714d8dae309c199b0f6,
+        type: 3}
+      propertyPath: Start_Animation
+      value: atk_yumi_yumi_kihon_atk_yumi_ads_shot1
+      objectReference: {fileID: 0}
     - target: {fileID: 696889933162739624, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
       propertyPath: m_Name
@@ -1080,12 +1085,12 @@ PrefabInstance:
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.95
+      value: -2.24
       objectReference: {fileID: 0}
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.92
+      value: -4.85
       objectReference: {fileID: 0}
     - target: {fileID: 702477381737544738, guid: fd0a2375093b2714d8dae309c199b0f6,
         type: 3}
