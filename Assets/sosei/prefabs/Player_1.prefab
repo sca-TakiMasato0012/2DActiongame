@@ -9786,6 +9786,8 @@ MonoBehaviour:
   currentAnimation: 
   previousState: 
   movement: 0
+  orignal_Animation: 
+  Start_Animation: atk_yumi_yumi_kihon_atk_yumi
 --- !u!50 &656258452999039960
 Rigidbody2D:
   serializedVersion: 4

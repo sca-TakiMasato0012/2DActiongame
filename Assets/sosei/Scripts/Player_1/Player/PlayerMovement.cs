@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour {
     public string previousState;
     public float movement;
     private Rigidbody2D rb;
+
+    private Spine.AnimationState spineAnimationState = default;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -105,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
+            SetCharacoterState("Arrow");
             arrow = true;
         }
         
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.X)) 
         {
-
+            
         }
     
     }
