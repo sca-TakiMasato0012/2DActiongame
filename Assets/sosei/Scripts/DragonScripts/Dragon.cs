@@ -70,6 +70,7 @@ public class Dragon : MonoBehaviour
             isAnim = true;
             DragonSpeed = 0;
         }
+        
         if (Dragon_Hp <= 0)//もし倒されたら
         {
             Destroy(gameObject);
