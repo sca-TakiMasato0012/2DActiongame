@@ -1,0 +1,11 @@
+﻿using System.Collections;using System.Collections.Generic;using UnityEngine;using Spine;using Spine.Unity;public class Movement : MonoBehaviour{    [SerializeField]    public float moveSpeed = 0;//プレイヤーの速度    [SerializeField]    private string Idle ="Idle";//待機アニメーション    [SerializeField]    private string Run = "Run";//走るアニメーション    //ゲームオブジェクトに設定されているSkeletonAnimation    private Spine.AnimationState spineAnimationState = default;    //Spineアニメーションを適用するために必要なAnimationState    private SkeletonAnimation skeletonAnimation = default;    void Start()    {        // ゲームオブジェクトのSkeletonAnimationを取得        skeletonAnimation = GetComponent<SkeletonAnimation>();        // SkeletonAnimationからAnimationStateを取得        spineAnimationState = skeletonAnimation.AnimationState;        PlayAnimation(Idle);    }    bool isIdle = false;    void Update()    {        float horizontalInput = Input.GetAxis("Horizontal");//移動
+
+        Vector3 movement = new Vector3(horizontalInput, 0f, 0f) * moveSpeed * Time.deltaTime;        transform.Translate(movement);        if (horizontalInput < 0)//右に移動で右を向く
+        {            transform.localScale = new Vector3(-1, 1, 1);        }        else if (horizontalInput > 0)//左に移動で左を向く
+        {            transform.localScale = new Vector3(1, 1, 1);        }        if (Input.GetKey(KeyCode.D) && !isIdle)//右
+        {            PlayAnimation(Run);            isIdle = true;        }
+
+        if (Input.GetKey(KeyCode.A) && !isIdle)//左
+        {            PlayAnimation(Run);            isIdle = true;        }
+
+        if (Input.GetKey(KeyCode.W))//回避        {        }        if (Input.GetKey(KeyCode.Space))//ジャンプ        {        }        if (Input.GetKey(KeyCode.F))//アクション        {        }        if (Input.GetKey(KeyCode.O))//弓        {        }        if (Input.GetKey(KeyCode.K))//剣        {        }        if (Input.GetKey(KeyCode.J))//スキル１        {        }        if (Input.GetKey(KeyCode.P))//スキル２        {        }    }    private void PlayAnimation(string name)    {        spineAnimationState.SetAnimation(0, name, true);    }}

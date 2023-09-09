@@ -53,7 +53,7 @@ private void Awake()
 			StartCoroutine(AttackCooldown());
 		}
 
-		if (Input.GetKeyDown(KeyCode.V) && canAttack2)//矢を放つ
+		if (Input.GetKeyDown(KeyCode.O) && canAttack2)//矢を放つ
 		{
 			
 			canAttack2 = false;

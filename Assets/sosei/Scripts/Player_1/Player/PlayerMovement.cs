@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour {
 			dash = true;
             
         }
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             SetCharacoterState("Arrow");
             arrow = true;

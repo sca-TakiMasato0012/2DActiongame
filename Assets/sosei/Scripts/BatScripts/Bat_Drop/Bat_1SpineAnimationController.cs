@@ -17,8 +17,9 @@ public class Bat_1SpineAnimationController : MonoBehaviour
     private SkeletonAnimation skeletonAnimation = default;
 
     private Spine.AnimationState spineAnimationState = default;
-    // Start is called before the first frame update
-    void Start() {
+
+    void Start()
+    {
         skeletonAnimation = GetComponent<SkeletonAnimation>();
 
         spineAnimationState = skeletonAnimation.AnimationState;
@@ -39,7 +40,7 @@ public class Bat_1SpineAnimationController : MonoBehaviour
 
         if(dis < 4 && isAnim) //もし石が落ちたら
         { 
-         PlayAnimation(After_Animation);//hirai/kakuuアニメーションを再生 
+            PlayAnimation(After_Animation);//hirai/kakuuアニメーションを再生 
 
         }
 

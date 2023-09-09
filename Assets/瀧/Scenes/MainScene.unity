@@ -441,8 +441,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchArea: {fileID: 708581958}
-  target: {fileID: 0}
-  Goburin_HP: 1
+  target: {fileID: 1264096498}
+  Goburin_HP: 2
   Stop_Animation: taiki/L_taiki1
   Start_Animation: walk/L_walk
   After_Animation: attack/L_attack1
@@ -952,8 +952,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchArea: {fileID: 1506448490}
-  target: {fileID: 0}
-  Goburin_HP: 1
+  target: {fileID: 1264096498}
+  Goburin_HP: 2
   Stop_Animation: taiki/L_taiki1
   Start_Animation: walk/L_walk
   After_Animation: attack/L_attack1
@@ -10018,11 +10018,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchArea: {fileID: 543630041}
   target: {fileID: 1264096498}
-  Goburin_HP: 1
+  Goburin_HP: 2
   Stop_Animation: taiki/L_taiki1
   Start_Animation: walk/L_walk
   After_Animation: attack/L_attack1
-  GoburinSpeed: 0
+  GoburinSpeed: 1
 --- !u!70 &894297405
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10634,8 +10634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchArea: {fileID: 1629634067}
-  target: {fileID: 0}
-  Goburin_HP: 1
+  target: {fileID: 1264096498}
+  Goburin_HP: 2
   Stop_Animation: taiki/L_taiki1
   Start_Animation: walk/L_walk
   After_Animation: attack/L_attack1
@@ -12746,8 +12746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchArea: {fileID: 1264972586}
-  target: {fileID: 0}
-  Goburin_HP: 1
+  target: {fileID: 1264096498}
+  Goburin_HP: 2
   Stop_Animation: taiki/L_taiki1
   Start_Animation: walk/L_walk
   After_Animation: attack/L_attack1
